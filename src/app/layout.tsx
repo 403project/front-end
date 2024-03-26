@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import "./globals.css";
+import RQProvider from "./_component/RQProvider";
 
 export const metadata: Metadata = {
   title: "별별 투표",
@@ -14,7 +16,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"root_container"}>{children}</body>
+      <body>
+        <RQProvider>
+          <Suspense fallback={<div>Loading...</div>}>
+            <div className={"root_container"}>{children}</div>
+          </Suspense>
+        </RQProvider>
+      </body>
     </html>
   );
 }
