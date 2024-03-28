@@ -39,85 +39,85 @@ export const system = {
 export const title = {
   h1: {
     fontWeight: "bold",
-    fontSize: 40,
+    fontSize: "40px",
   },
   h2: {
     fontWeight: "bold",
-    fontSize: 32,
+    fontSize: "32px",
   },
   h3: {
     fontWeight: "bold",
-    fontSize: 28,
+    fontSize: "28px",
   },
   h4: {
     fontWeight: "bold",
-    fontSize: 24,
+    fontSize: "24px",
   },
   h5: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: "20px",
   },
 };
 
 export const content = {
   bold20: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: "20px",
   },
   medium20: {
     fontWeight: 500,
-    fontSize: 20,
+    fontSize: "20px",
   },
   regular20: {
     fontWeight: 400,
-    fontSize: 20,
+    fontSize: "20px",
   },
   bold18: {
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: "18px",
   },
   medium18: {
     fontWeight: 500,
-    fontSize: 18,
+    fontSize: "18px",
   },
   regular18: {
     fontWeight: 400,
-    fontSize: 18,
+    fontSize: "18px",
   },
   bold16: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: "16px",
   },
   medium16: {
     fontWeight: 500,
-    fontSize: 16,
+    fontSize: "16px",
   },
   regular16: {
     fontWeight: 400,
-    fontSize: 16,
+    fontSize: "16px",
   },
   bold14: {
     fontWeight: "bold",
-    fontSize: 14,
+    fontSize: "14px",
   },
   medium14: {
     fontWeight: 500,
-    fontSize: 14,
+    fontSize: "14px",
   },
   regular14: {
     fontWeight: 400,
-    fontSize: 14,
+    fontSize: "14px",
   },
   bold12: {
     fontWeight: "bold",
-    fontSize: 12,
+    fontSize: "12px",
   },
   medium12: {
     fontWeight: 500,
-    fontSize: 12,
+    fontSize: "12px",
   },
   regular12: {
     fontWeight: 400,
-    fontSize: 12,
+    fontSize: "12px",
   },
 };

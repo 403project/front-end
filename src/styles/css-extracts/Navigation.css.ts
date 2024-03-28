@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { primary, title, fontFamily, content, strokeLine } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const LogoContainer = style({
   display: "flex",
@@ -13,12 +14,11 @@ export const Naviation = style({
   padding: "22px 26px",
   alignItems: "center",
   borderBottom: "1px solid",
-  borderColor: strokeLine["10"],
+  borderColor: vars.strokeLine["10"],
 });
 
 export const LogoTitle = style({
-  color: primary[90],
-  fontSize: content["medium16"]["fontSize"],
-  fontWeight: content["medium16"]["fontWeight"],
+  color: vars.primary[90],
+  ...vars.content.medium16,
   fontFamily: fontFamily,
 });

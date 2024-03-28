@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { neutral, primary, strokeLine } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const LoginRegContainer = style({
   position: "relative",
@@ -19,12 +19,12 @@ export const SignupContainer = style({
 });
 
 export const SignupAsk = style({
-  color: neutral[60],
+  color: vars.neutral[80],
   marginRight: "12px",
 });
 
 export const GotoReg = style({
-  color: primary[100],
+  color: vars.primary[100],
   cursor: "pointer",
 });
 
@@ -35,7 +35,7 @@ export const SeperatorContainer = style({
   fontSize: "12px",
   fontWeight: "700",
   lineHeight: "18px",
-  color: neutral[40],
+  color: vars.neutral[40],
   position: "relative",
 });
 
@@ -44,7 +44,7 @@ export const LeftSeperatorLine = style({
   left: "54%",
   right: 0,
   top: "50%",
-  borderBottom: `1px solid ${strokeLine[10]}`,
+  borderBottom: `1px solid ${vars.strokeLine[10]}`,
   content: "''",
 });
 
@@ -53,7 +53,7 @@ export const RightSeperatorLine = style({
   left: 0,
   right: "54%",
   top: "50%",
-  borderBottom: `1px solid ${strokeLine[10]}`,
+  borderBottom: `1px solid ${vars.strokeLine[10]}`,
   content: "''",
 });
 

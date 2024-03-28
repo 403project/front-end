@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import RQProvider from "./_component/RQProvider";
 import Navigation from "./_component/Navigation";
+import { themeClass } from "@/styles/variants/variants.css";
 
 export const metadata: Metadata = {
   title: "별별 투표",
@@ -20,7 +21,7 @@ export default function RootLayout({
       <body>
         <RQProvider>
           <Suspense fallback={<div>Loading...</div>}>
-            <div className={"root_container"}>{children}</div>
+            <div className={themeClass}>{children}</div>
           </Suspense>
         </RQProvider>
       </body>
