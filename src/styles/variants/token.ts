@@ -16,6 +16,7 @@ export const neutral = {
 export const strokeLine = {
   10: "#E0E0E0",
   5: "#F3F3F3",
+  0: "#222222",
 };
 
 export const primary = {
@@ -25,6 +26,7 @@ export const primary = {
   70: "#789EFF",
   60: "#8BACFE",
   50: "#9FBAFF",
+  30: "#CCDAFF",
 };
 
 export const fontFamily = `"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;`;

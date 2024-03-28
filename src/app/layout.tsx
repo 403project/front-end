@@ -20,7 +20,6 @@ export default function RootLayout({
       <body>
         <RQProvider>
           <Suspense fallback={<div>Loading...</div>}>
-            <Navigation></Navigation>
             <div className={"root_container"}>{children}</div>
           </Suspense>
         </RQProvider>
