@@ -1,12 +1,12 @@
 import { style } from "@vanilla-extract/css";
-import { primary, neutral } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const LoginBtn = style({
   position: "absolute",
   width: "calc(100% - 40px)",
   height: "52px",
-  backgroundColor: primary[30],
+  backgroundColor: vars.primary[30],
   borderRadius: "8px",
   fontFamily: "Pretendard",
-  color: neutral.white,
+  color: vars.neutral.white,
 });

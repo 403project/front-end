@@ -1,11 +1,11 @@
 import { style } from "@vanilla-extract/css";
-import { neutral, primary, strokeLine, system } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const LoginRegInput = style({
   margin: "14px 0 26px 0",
   width: "100%",
   height: "52px",
-  border: `1px solid ${strokeLine[10]}`,
+  border: `1px solid ${vars.strokeLine[10]}`,
   padding: "14px",
   fontFamily: "Pretendard",
   borderRadius: "6px",
@@ -17,7 +17,7 @@ export const Duplicate = style({
   fontSize: "14px",
   fontWeight: "500",
   lineHeight: "18px",
-  color: neutral[40],
+  color: vars.neutral[40],
   fontFamily: "Pretendard",
   textDecoration: "underline",
 });
@@ -26,7 +26,7 @@ export const RegEmailNickInput = style({
   margin: "14px 0 26px 0",
   width: "calc(100% - 80px)",
   height: "52px",
-  border: `1px solid ${strokeLine[10]}`,
+  border: `1px solid ${vars.strokeLine[10]}`,
   padding: "14px",
   fontFamily: "Pretendard",
   borderRadius: "6px",
@@ -35,7 +35,7 @@ export const RegEmailNickInput = style({
 export const LoginRegLabel = style({
   fontSize: "14px",
   fontWeight: "700",
-  color: neutral[90],
+  color: vars.neutral[90],
   fontFamily: "Pretendard",
 });
 
@@ -55,11 +55,11 @@ export const LoginButton = style({
   width: "100%",
   height: "52px",
   borderRadius: "8px",
-  backgroundColor: primary[100],
+  backgroundColor: vars.primary[100],
   fontFamily: "Pretendard",
   fontSize: "16px",
   fontWeight: "700",
-  color: neutral.white,
+  color: vars.neutral.white,
 });
 
 export const ErrorMessage = style({
@@ -68,5 +68,5 @@ export const ErrorMessage = style({
   fontSize: "12px",
   fontWeight: "400",
   lineHeight: "18px",
-  color: system.warning,
+  color: vars.system.warning,
 });

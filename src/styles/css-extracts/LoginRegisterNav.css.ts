@@ -1,12 +1,12 @@
 import { style } from "@vanilla-extract/css";
-import { neutral, primary, strokeLine } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const HeaderContainer = style({
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",
   width: "100%",
-  color: neutral[90],
+  color: vars.neutral[90],
   margin: "0 auto",
   marginTop: "50px",
   fontSize: "28px",
@@ -21,7 +21,7 @@ export const LogoContainer = style({
 export const LogoSpan = style({
   fontSize: "16px",
   marginLeft: "6px",
-  color: primary[100],
+  color: vars.primary[100],
   fontWeight: "700",
 });
 
@@ -29,13 +29,13 @@ export const Progress = style({
   marginTop: "36px",
   width: "100%",
   height: "2px",
-  backgroundColor: strokeLine[10],
+  backgroundColor: vars.strokeLine[10],
 });
 
 export const LoginBar = style({
   height: "2px",
   transition: "width 0.5s",
-  backgroundColor: strokeLine[0],
+  backgroundColor: vars.strokeLine[0],
 });
 
 export const HeaderTitle = style({
