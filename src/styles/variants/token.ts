@@ -26,7 +26,11 @@ export const primary = {
   70: "#789EFF",
   60: "#8BACFE",
   50: "#9FBAFF",
+  40: "#B2C7FF",
   30: "#CCDAFF",
+  20: "#E0E9FF",
+  10: "#F2F6FF",
+  5: "#F9FBFF",
 };
 
 export const fontFamily = `"Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;`;
