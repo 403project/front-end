@@ -10,7 +10,7 @@ export const neutral = {
   20: "#CCCCCC",
   10: "#E6E6E6",
   5: "#F3F3F3",
-  white: "#FFFFFF",
+  0: "#FFFFFF",
 };
 
 export const strokeLine = {

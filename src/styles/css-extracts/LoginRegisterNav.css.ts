@@ -8,7 +8,7 @@ export const HeaderContainer = style({
   width: "100%",
   color: vars.neutral[90],
   margin: "0 auto",
-  marginTop: "50px",
+  marginTop: "30px",
   fontSize: "28px",
   fontFamily: "Pretendard",
 });
