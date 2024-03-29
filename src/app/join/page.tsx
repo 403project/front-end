@@ -15,6 +15,7 @@ export default function JoinPage() {
   const [step, setStep] = useState<number>(stepParam ? Number(stepParam) : 1);
   let headerTitle = "회원가입";
   let pageContent = <JoinInputForm />;
+  let BtnContent = "다음";
 
   useEffect(() => {
     if (stepParam) {
@@ -37,6 +38,7 @@ export default function JoinPage() {
   if (step === 2) {
     headerTitle = "회원정보를 입력해주세요.";
     pageContent = <JoinNextPage />;
+    BtnContent = "회원가입";
   }
 
   const handleNext = () => {
@@ -55,7 +57,7 @@ export default function JoinPage() {
       {pageContent}
       {step < 3 && (
         <button className={LoginBtn} onClick={handleNext}>
-          다음
+          {BtnContent}
         </button>
       )}
     </div>

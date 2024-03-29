@@ -32,6 +32,9 @@ export const RegEmailNickInput = style({
   fontFamily: "Pretendard",
   borderRadius: "6px",
 });
+export const Error = style({
+  borderColor: system.warning,
+});
 
 export const LoginRegLabel = style({
   fontSize: "14px",
@@ -46,7 +49,7 @@ export const PasswordInputContainer = style({
 
 export const ShowPasswordImg = style({
   position: "absolute",
-  top: "45%",
+  top: "43.5%",
   right: "10px",
   transform: "translateY(-50%)",
   cursor: "pointer",
