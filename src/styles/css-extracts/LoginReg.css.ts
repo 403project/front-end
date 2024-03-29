@@ -41,6 +41,10 @@ export const GenderBtn = style({
   backgroundColor: vars.primary[30],
 });
 
+export const selected = style({
+  backgroundColor: vars.primary[100],
+});
+
 export const BirthContainer = style({
   marginTop: "25px",
   color: vars.neutral[90],
