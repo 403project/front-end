@@ -36,8 +36,8 @@ const Ranking = () => {
         </div>
       </header>
       <section className={rankingBottomWrapper}>
-        {Array.from({ length: 5 }).map((_) => {
-          return <RankingCard />;
+        {Array.from({ length: 5 }).map((_, index) => {
+          return <RankingCard key={index} />;
         })}
       </section>
     </section>
