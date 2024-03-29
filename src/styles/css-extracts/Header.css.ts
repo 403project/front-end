@@ -7,6 +7,6 @@ export const Main = style({
   margin: "0 auto",
   padding: "61px 0",
   color: vars.neutral[90],
-  ...vars.title.h2,
+  ...title.h2,
   fontFamily: fontFamily,
 });
