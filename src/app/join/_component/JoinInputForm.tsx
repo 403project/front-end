@@ -14,9 +14,8 @@ import Eye from "../../../../public/eye.svg";
 import Image from "next/image";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 
-const JoinInputForm = () => {
+export default function JoinInputForm() {
   const [isError, setIsError] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showRePassword, setShowRePassword] = useState<boolean>(false);
@@ -24,7 +23,6 @@ const JoinInputForm = () => {
   const [password, setPassword] = useState<string>("");
   const [rePassword, setRePassword] = useState<string>("");
   const [nickname, setNickname] = useState<string>("");
-  const router = useRouter();
 
   return (
     <div>
@@ -126,6 +124,4 @@ const JoinInputForm = () => {
       </div>
     </div>
   );
-};
-
-export default JoinInputForm;
+}
