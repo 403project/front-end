@@ -38,6 +38,11 @@ const AvartarTitle = style({
   marginTop: 12.58,
   ...vars.content.medium16,
   color: vars.neutral[0],
+  "@media": {
+    "screen and (max-width: 400px)": {
+      ...vars.content.medium12,
+    },
+  },
 });
 
 const AvatarTotalCount = style({
@@ -46,6 +51,11 @@ const AvatarTotalCount = style({
   backgroundColor: vars.primary[60],
   padding: "6px 16px",
   borderRadius: 50,
+  "@media": {
+    "screen and (max-width: 400px)": {
+      ...vars.content.medium12,
+    },
+  },
 });
 
 export { AvatarContainer, AvatarBox, AvatarCount, AvatarImgBox, AvatarImg, AvartarTitle, AvatarTotalCount };

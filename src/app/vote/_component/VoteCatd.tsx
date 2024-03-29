@@ -22,7 +22,7 @@ import activeLike from "../../../../public/active_heart.svg";
 import more from "../../../../public/more.svg";
 import { useState, forwardRef } from "react";
 
-const VoteCard = forwardRef(({ isActive, onMoreClick }, ref) => {
+const VoteCard = forwardRef(({ isActive, onMoreClick, setActiveCardIndex }, ref) => {
   const [isMore, setIsMore] = useState(false);
   return (
     <div ref={ref} className={voteCardContainer}>
@@ -57,8 +57,24 @@ const VoteCard = forwardRef(({ isActive, onMoreClick }, ref) => {
       </div>
       {isActive && (
         <div className={voteCardMore}>
-          <div className={voteCardMoreButton}>공유하기</div>
-          <div className={voteCardMoreButton}>신고하기</div>
+          <div
+            className={voteCardMoreButton}
+            onClick={() => {
+              setActiveCardIndex(-1);
+              console.log("공유하기");
+            }}
+          >
+            공유하기
+          </div>
+          <div
+            className={voteCardMoreButton}
+            onClick={() => {
+              setActiveCardIndex(-1);
+              console.log("신고하기");
+            }}
+          >
+            신고하기
+          </div>
         </div>
       )}
     </div>

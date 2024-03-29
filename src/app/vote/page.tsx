@@ -48,7 +48,11 @@ export default function Vote(): ReactNode {
                     key={index}
                     ref={(el) => (voteCardRefs.current[index] = el)}
                     isActive={index === activeCardIndex}
-                    onMoreClick={() => setActiveCardIndex(index === activeCardIndex ? -1 : index)}
+                    onMoreClick={(e) => {
+                      e.stopPropagation();
+                      setActiveCardIndex(index === activeCardIndex ? -1 : index);
+                    }}
+                    setActiveCardIndex={setActiveCardIndex}
                   />
                 );
               })}
