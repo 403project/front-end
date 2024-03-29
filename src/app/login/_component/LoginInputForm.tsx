@@ -29,7 +29,7 @@ const LoginInpuForm = () => {
     if (email === "test1234@gmail.com" && password === "1234") {
       setIsLogin(true);
       setIsError(false);
-      router.push("/join");
+      router.push("/");
     } else {
       setIsLogin(false);
       setIsError(true);

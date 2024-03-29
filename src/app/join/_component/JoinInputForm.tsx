@@ -41,7 +41,7 @@ export default function JoinInputForm() {
 
   const handleEmailChange = (e: FocusEvent<HTMLInputElement>) => {
     const newEmail = e.target.value.trim();
-    if (!validateEmail(newEmail)) {
+    if (newEmail !== "" && !validateEmail(newEmail)) {
       setEmailError("유효한 이메일 주소를 입력해주세요.");
       setOnEmailError(true);
     } else {
@@ -58,8 +58,8 @@ export default function JoinInputForm() {
 
   const handleBlurPassword = (e: FocusEvent<HTMLInputElement>) => {
     const value = (e.target as HTMLInputElement).value;
-    if ((value !== "" && value.length < 6) || value.length > 10) {
-      setPasswordError("비밀번호는 6자 이상 10자 이하여야 합니다.");
+    if ((value !== "" && value.length < 6) || value.length > 15) {
+      setPasswordError("비밀번호는 6자 이상 15자 이하여야 합니다.");
       setOnPasswordError(true);
     } else {
       setPasswordError("");
@@ -119,7 +119,8 @@ export default function JoinInputForm() {
             onChange={(e) => setPassword(e.target.value)}
             onBlur={(e) => handleBlurPassword(e)}
             onKeyDown={handleKeyDown}
-            placeholder="6자 이상 10자 이하"
+            placeholder="6자 이상 15자 이하"
+            maxLength={15}
           />
           {showPassword ? (
             <Image
@@ -153,9 +154,10 @@ export default function JoinInputForm() {
             className={`${LoginRegInput} ${onPasswordError ? Error : ""}`}
             value={rePassword}
             onChange={(e) => setRePassword(e.target.value)}
-            placeholder="6자 이상 10자 이하"
+            placeholder="6자 이상 15자 이하"
             onKeyDown={handleKeyDown}
             onBlur={handleBlurRePassword}
+            maxLength={15}
           />
           {showRePassword ? (
             <Image
@@ -192,6 +194,7 @@ export default function JoinInputForm() {
             onKeyDown={handleKeyDown}
             onBlur={(e) => handleBlurNick(e)}
             placeholder="2자 이상 8자 이하"
+            maxLength={8}
           />
           <span className={Duplicate}>중복확인</span>
           {nicknameError && <div className={ErrorMessage}>{nicknameError}</div>}
