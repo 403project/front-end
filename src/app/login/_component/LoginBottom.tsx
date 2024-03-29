@@ -11,13 +11,22 @@ import {
 import Image from "next/image";
 import Kakao from "../../../../public/kakao.svg";
 import Google from "../../../../public/google.svg";
+import { useRouter } from "next/navigation";
 
 const LoginBottom = () => {
+  const router = useRouter();
+
+  const handleReg = () => {
+    router.push("/join");
+  };
+
   return (
     <div>
       <div className={SignupContainer}>
         <span className={SignupAsk}>계정이 없으신가요?</span>
-        <span className={GotoReg}>회원가입 하기</span>
+        <span className={GotoReg} onClick={handleReg}>
+          회원가입 하기
+        </span>
       </div>
       <div className={SeperatorContainer}>
         <span className={LeftSeperatorLine}></span>
