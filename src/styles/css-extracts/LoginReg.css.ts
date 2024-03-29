@@ -1,6 +1,5 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../variants/variants.css";
-import { neutral } from "../variants/token";
 
 export const LoginRegContainer = style({
   position: "relative",
@@ -12,13 +11,13 @@ export const LoginRegContainer = style({
 
 export const SubTitle = style({
   fontSize: "14px",
-  marginTop: "-18px",
+  marginTop: "-14px",
   fontWeight: "400",
   lineHeight: "18px",
 });
 
 export const GenderContainer = style({
-  marginTop: "36px",
+  marginTop: "16px",
 });
 
 export const RegGender = style({
@@ -152,5 +151,17 @@ export const DropDownOptionContainer = style({
   borderRadius: "6px",
   border: `1px solid ${vars.neutral[10]}`,
   backgroundColor: vars.neutral[0],
+  zIndex: "999",
+  maxHeight: "156px",
+  overflowY: "auto",
+});
+
+export const DropDownOption = style({
+  padding: "0 14px",
   height: "52px",
+  fontSize: "14px",
+  fontWeight: "500",
+  display: "flex",
+  alignItems: "center",
+  cursor: "pointer",
 });

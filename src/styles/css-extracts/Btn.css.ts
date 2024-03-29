@@ -5,7 +5,7 @@ export const LoginBtn = style({
   position: "absolute",
   width: "calc(100% - 40px)",
   height: "52px",
-  top: "600px",
+  top: "650px",
   backgroundColor: vars.primary[30],
   borderRadius: "8px",
   fontFamily: "Pretendard",
