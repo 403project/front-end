@@ -20,8 +20,8 @@ const Avatar = () => {
             alt="아바타 이미지"
             priority
             className={AvatarImg}
-            width={90}
-            height={90}
+            width={80}
+            height={80}
           />
         </div>
       </div>

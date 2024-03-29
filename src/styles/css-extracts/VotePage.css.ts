@@ -4,6 +4,11 @@ import { vars } from "../variants/variants.css";
 export const voteContainer = style({
   padding: "0 140px",
   marginTop: 129,
+  "@media": {
+    "screen and (max-width: 768px)": {
+      padding: "0 16px",
+    },
+  },
 });
 
 export const voteWrapper = style({
@@ -26,6 +31,7 @@ export const voteCardBox = style({
   display: "flex",
   flexWrap: "wrap",
   gap: 24,
+  // display: "none",
   // flex: 2,
 });
 

@@ -9,6 +9,11 @@ const rankingContainer = style({
 const rankingTopWrapper = style({
   backgroundColor: vars.primary[100],
   padding: "30px 40px",
+  "@media": {
+    "screen and (max-width: 400px)": {
+      padding: "26px 24px",
+    },
+  },
 });
 
 const rankingHeaderBox = style({

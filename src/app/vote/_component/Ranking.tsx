@@ -35,11 +35,11 @@ const Ranking = () => {
           })}
         </div>
       </header>
-      <div className={rankingBottomWrapper}>
+      <section className={rankingBottomWrapper}>
         {Array.from({ length: 5 }).map((_) => {
           return <RankingCard />;
         })}
-      </div>
+      </section>
     </section>
   );
 };
