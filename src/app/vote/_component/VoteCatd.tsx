@@ -1,3 +1,4 @@
+"use client";
 import {
   voteBadge,
   voteCardContainer,
@@ -5,6 +6,8 @@ import {
   voteCardDescription,
   voteCardFooter,
   voteCardHeader,
+  voteCardMore,
+  voteCardMoreButton,
   voteCardTitle,
   voteContent,
   voteImage,
@@ -15,11 +18,14 @@ import Badge from "./Badge";
 
 import Image from "next/image";
 import like from "../../../../public/heart.svg";
+import activeLike from "../../../../public/active_heart.svg";
 import more from "../../../../public/more.svg";
+import { useState, forwardRef } from "react";
 
-const VoteCard = () => {
+const VoteCard = forwardRef(({ isActive, onMoreClick }, ref) => {
+  const [isMore, setIsMore] = useState(false);
   return (
-    <div className={voteCardContainer}>
+    <div ref={ref} className={voteCardContainer}>
       <div className={voteCardHeader}>
         <div className={voteBadge}>진행중</div>
         <Image
@@ -28,13 +34,14 @@ const VoteCard = () => {
           alt="투표 이미지"
           width={300}
           height={180}
+          priority
         />
         <div className={voteSetting}>
           <div className={voteSettingButton}>
-            <Image src={like} width={20} height={20} alt="좋아요" />
+            <Image src={activeLike} width={20} height={20} alt="좋아요" />
           </div>
           <div style={{ marginRight: 6 }} />
-          <div className={voteSettingButton}>
+          <div className={voteSettingButton} onClick={onMoreClick}>
             <Image src={more} width={20} height={20} alt="더보기" />
           </div>
         </div>
@@ -48,8 +55,14 @@ const VoteCard = () => {
           return <Badge />;
         })}
       </div>
+      {isActive && (
+        <div className={voteCardMore}>
+          <div className={voteCardMoreButton}>공유하기</div>
+          <div className={voteCardMoreButton}>신고하기</div>
+        </div>
+      )}
     </div>
   );
-};
+});
 
 export default VoteCard;

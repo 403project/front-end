@@ -6,6 +6,7 @@ export const voteCardContainer = style({
   borderRadius: 10,
   padding: 14,
   maxWidth: 340,
+  position: "relative",
 });
 
 export const voteCardHeader = style({
@@ -36,9 +37,13 @@ export const voteSetting = style({
 });
 
 export const voteSettingButton = style({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
   padding: 10,
   backgroundColor: vars.neutral[10],
   borderRadius: 50,
+  cursor: "pointer",
 });
 
 export const voteCardContent = style({
@@ -60,4 +65,19 @@ export const voteCardFooter = style({
   marginTop: 23,
   flexWrap: "wrap",
   gap: 4,
+});
+
+export const voteCardMore = style({
+  position: "absolute",
+  top: -60,
+  right: -25,
+  backgroundColor: vars.neutral[0],
+  borderRadius: 10,
+  boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+});
+
+export const voteCardMoreButton = style({
+  padding: "10px 20px",
+  color: vars.neutral[50],
+  cursor: "pointer",
 });
