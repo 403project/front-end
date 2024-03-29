@@ -10,7 +10,7 @@ export const neutral = {
   20: "#CCCCCC",
   10: "#E6E6E6",
   5: "#F3F3F3",
-  white: "#FFFFFF",
+  0: "#FFFFFF",
 };
 
 export const strokeLine = {
@@ -69,11 +69,11 @@ export const content = {
     fontSize: "20px",
   },
   medium20: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: "20px",
   },
   regular20: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: "20px",
   },
   bold18: {
@@ -81,11 +81,11 @@ export const content = {
     fontSize: "18px",
   },
   medium18: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: "18px",
   },
   regular18: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: "18px",
   },
   bold16: {
@@ -93,11 +93,11 @@ export const content = {
     fontSize: "16px",
   },
   medium16: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: "16px",
   },
   regular16: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: "16px",
   },
   bold14: {
@@ -105,11 +105,11 @@ export const content = {
     fontSize: "14px",
   },
   medium14: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: "14px",
   },
   regular14: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: "14px",
   },
   bold12: {
@@ -117,11 +117,11 @@ export const content = {
     fontSize: "12px",
   },
   medium12: {
-    fontWeight: 500,
+    fontWeight: "500",
     fontSize: "12px",
   },
   regular12: {
-    fontWeight: 400,
+    fontWeight: "400",
     fontSize: "12px",
   },
 };

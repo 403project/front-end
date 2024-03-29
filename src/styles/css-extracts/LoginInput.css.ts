@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../variants/variants.css";
+import { system } from "../variants/token";
 
 export const LoginRegInput = style({
   margin: "14px 0 26px 0",
@@ -59,7 +60,7 @@ export const LoginButton = style({
   fontFamily: "Pretendard",
   fontSize: "16px",
   fontWeight: "700",
-  color: vars.neutral.white,
+  color: vars.neutral[0],
 });
 
 export const ErrorMessage = style({
@@ -68,5 +69,5 @@ export const ErrorMessage = style({
   fontSize: "12px",
   fontWeight: "400",
   lineHeight: "18px",
-  color: vars.system.warning,
+  color: system.warning,
 });

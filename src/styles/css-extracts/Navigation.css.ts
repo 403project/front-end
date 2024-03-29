@@ -19,6 +19,6 @@ export const Naviation = style({
 
 export const LogoTitle = style({
   color: vars.primary[90],
-  ...vars.content.medium16,
+  ...content.medium16,
   fontFamily: fontFamily,
 });
