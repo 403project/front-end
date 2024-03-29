@@ -3,6 +3,7 @@ import { vars } from "../variants/variants.css";
 
 export const voteContainer = style({
   padding: "0 140px",
+  marginTop: 129,
 });
 
 export const voteWrapper = style({

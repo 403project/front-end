@@ -10,6 +10,7 @@ import {
 import { ReactNode, useEffect, useRef, useState } from "react";
 import VoteCard from "./_component/VoteCatd";
 import Ranking from "./_component/Ranking";
+import Navigation from "../_component/Navigation";
 
 export default function Vote(): ReactNode {
   const [activeCardIndex, setActiveCardIndex] = useState(-1);
@@ -27,34 +28,37 @@ export default function Vote(): ReactNode {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [activeCardIndex]);
   return (
-    <main className={voteContainer}>
-      <div className={voteTitle}>3월의 프로젝트</div>
-      <div>
-        <select className={voteSelect}>
-          <option defaultChecked>전체</option>
-          <option>등록일 순</option>
-          <option>가나다 순</option>
-          <option>조회수 높은 순</option>
-          <option>조회수 낮은 순</option>
-        </select>
-        <div className={voteWrapper}>
-          <div className={voteCardBox}>
-            {Array.from({ length: 5 }).map((_, index) => {
-              return (
-                <VoteCard
-                  key={index}
-                  ref={(el) => (voteCardRefs.current[index] = el)}
-                  isActive={index === activeCardIndex}
-                  onMoreClick={() => setActiveCardIndex(index === activeCardIndex ? -1 : index)}
-                />
-              );
-            })}
-          </div>
-          <div className={rankingBox}>
-            <Ranking />
+    <>
+      <Navigation />
+      <main className={voteContainer}>
+        <div className={voteTitle}>3월의 프로젝트</div>
+        <div>
+          <select className={voteSelect}>
+            <option defaultChecked>전체</option>
+            <option>등록일 순</option>
+            <option>가나다 순</option>
+            <option>조회수 높은 순</option>
+            <option>조회수 낮은 순</option>
+          </select>
+          <div className={voteWrapper}>
+            <div className={voteCardBox}>
+              {Array.from({ length: 5 }).map((_, index) => {
+                return (
+                  <VoteCard
+                    key={index}
+                    ref={(el) => (voteCardRefs.current[index] = el)}
+                    isActive={index === activeCardIndex}
+                    onMoreClick={() => setActiveCardIndex(index === activeCardIndex ? -1 : index)}
+                  />
+                );
+              })}
+            </div>
+            <div className={rankingBox}>
+              <Ranking />
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

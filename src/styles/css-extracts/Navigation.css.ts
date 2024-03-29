@@ -4,9 +4,7 @@ import { vars } from "../variants/variants.css";
 
 export const LogoContainer = style({
   display: "flex",
-  gap: 48,
   alignItems: "center",
-  height: 42,
 });
 
 export const Naviation = style({
@@ -15,10 +13,16 @@ export const Naviation = style({
   alignItems: "center",
   borderBottom: "1px solid",
   borderColor: vars.strokeLine["10"],
+  position: "fixed",
+  top: 0,
+  width: "100%",
+  backgroundColor: vars.neutral[0],
+  zIndex: 100,
 });
 
 export const LogoTitle = style({
   color: vars.primary[90],
   ...content.medium16,
   fontFamily: fontFamily,
+  marginLeft: 6,
 });
