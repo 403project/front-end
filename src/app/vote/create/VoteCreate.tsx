@@ -1,6 +1,11 @@
 "use client";
 import Navigation from "@/app/_component/Navigation";
-import { voteCreateContainer, voteCreateTitle, voteFileWrapper } from "@/styles/css-extracts/VoteCreate.css";
+import {
+  voteCreateContainer,
+  voteCreateTitle,
+  voteFileWrapper,
+  voteCreateWrapper,
+} from "@/styles/css-extracts/VoteCreate.css";
 import { useDropzone } from "react-dropzone";
 import upload from "../../../../public/upload_image.svg";
 import Image from "next/image";

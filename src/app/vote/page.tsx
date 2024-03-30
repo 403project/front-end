@@ -14,11 +14,11 @@ import Navigation from "../_component/Navigation";
 
 export default function Vote(): ReactNode {
   const [activeCardIndex, setActiveCardIndex] = useState(-1);
-  const voteCardRefs = useRef([]);
+  const voteCardRefs = useRef<any>([]);
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      const activeRef = voteCardRefs.current[activeCardIndex];
+    const handleClickOutside = (event: any) => {
+      const activeRef = voteCardRefs.current[activeCardIndex] as any;
       if (activeRef && !activeRef.contains(event.target)) {
         setActiveCardIndex(-1); // Close the active card if click is outside
       }
@@ -46,9 +46,9 @@ export default function Vote(): ReactNode {
                 return (
                   <VoteCard
                     key={index}
-                    ref={(el) => (voteCardRefs.current[index] = el)}
+                    ref={(el: any) => (voteCardRefs.current[index] = el)}
                     isActive={index === activeCardIndex}
-                    onMoreClick={(e) => {
+                    onMoreClick={(e: any) => {
                       e.stopPropagation();
                       setActiveCardIndex(index === activeCardIndex ? -1 : index);
                     }}

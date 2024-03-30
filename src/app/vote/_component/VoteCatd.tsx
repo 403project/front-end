@@ -9,7 +9,6 @@ import {
   voteCardMore,
   voteCardMoreButton,
   voteCardTitle,
-  voteContent,
   voteImage,
   voteSetting,
   voteSettingButton,
@@ -22,7 +21,7 @@ import activeLike from "../../../../public/active_heart.svg";
 import more from "../../../../public/more.svg";
 import { useState, forwardRef } from "react";
 
-const VoteCard = forwardRef(({ isActive, onMoreClick, setActiveCardIndex }, ref) => {
+const VoteCard = forwardRef(({ isActive, onMoreClick, setActiveCardIndex }: any, ref: any) => {
   const [isMore, setIsMore] = useState(false);
   return (
     <div ref={ref} className={voteCardContainer}>
