@@ -12,7 +12,9 @@ export function validateFormData(
     birthYear !== "" &&
     parseInt(birthYear) >= 1924 &&
     parseInt(birthYear) <= 2009 &&
+    selectedCategory !== null &&
     selectedCategory !== "" &&
+    selectedGender !== null &&
     selectedGender !== ""
   ) {
     return true;
