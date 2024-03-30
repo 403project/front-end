@@ -33,7 +33,7 @@ export default function JoinPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>("");
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
 
-  const { setIsLogin, isLogin } = useGlobalStore();
+  const { setIsLogin } = useGlobalStore();
 
   let headerTitle = "회원가입";
   let pageContent = (
