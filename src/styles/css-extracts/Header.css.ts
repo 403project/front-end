@@ -3,10 +3,14 @@ import { title, fontFamily, neutral } from "../variants/token";
 import { vars } from "../variants/variants.css";
 
 export const Main = style({
-  maxWidth: 1160,
-  margin: "0 auto",
-  padding: "61px 0",
+  width: "100%",
+  maxWidth: 1200,
+  marginTop: "64px",
+  paddingLeft: "30px",
+  display: "flex",
+  flexDirection: "column",
   color: vars.neutral[90],
   ...title.h2,
+  gap: 48,
   fontFamily: fontFamily,
 });
