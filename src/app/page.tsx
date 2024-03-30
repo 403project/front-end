@@ -83,7 +83,12 @@ export default async function Home() {
           <h2>프로젝트 둘러보기</h2>
           <div className={ProjectsContainer}>
             {polls.map(({ endDate, id, ongoing, startDate, title }) => (
-              <ProjectCard status={ongoing} title={title} date={`${startDate} ~ ${endDate}`} />
+              <ProjectCard
+                key={`project-poll-${id}`}
+                status={ongoing}
+                title={title}
+                date={`${startDate} ~ ${endDate}`}
+              />
             ))}
             {polls.length > 3 && (
               <Link href={"more"} className={`${ProjectMoreButton}`}>
