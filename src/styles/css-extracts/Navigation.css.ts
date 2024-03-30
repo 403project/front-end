@@ -37,6 +37,11 @@ export const NavigationGroups = style({
   color: vars.neutral["90"],
   ...content.regular16,
   fontFamily: "Pretendard",
+  "@media": {
+    "screen and (max-width: 800px)": {
+      display: "none",
+    },
+  },
 });
 
 export const NavigationRightGroups = style({
@@ -46,6 +51,18 @@ export const NavigationRightGroups = style({
   ...content.regular16,
   alignItems: "center",
   fontFamily: "Pretendard",
+  "@media": {
+    "screen and (max-width: 800px)": {},
+  },
+});
+
+export const NavigationRightFirstButton = style({
+  background: "red",
+  "@media": {
+    "screen and (max-width: 800px)": {
+      display: "none",
+    },
+  },
 });
 
 export const NavigationButton = style({

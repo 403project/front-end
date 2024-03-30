@@ -7,6 +7,7 @@ import {
   NaviationPrimary,
   NavigationButton,
   NavigationGroups,
+  NavigationRightFirstButton,
   NavigationRightGroups,
 } from "@/styles/css-extracts/Navigation.css";
 import React, { PropsWithChildren } from "react";
@@ -38,7 +39,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </ul>
       </div>
       <ul className={NavigationRightGroups}>
-        <li>
+        <li className={NavigationRightFirstButton}>
           <Link href={"vote/create"}>등록하기</Link>
         </li>
         <li>

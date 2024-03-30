@@ -20,7 +20,7 @@ const NotFound = () => {
           paddingBottom: "120px",
         }}
       >
-        <Image src="starstar.svg" width={320} height={320} alt="로고" />
+        <Image src="/starstar.svg" width={320} height={320} alt="로고" />
         <div style={{ fontWeight: "bold", fontSize: 24, fontFamily: "Pretendard" }}>잘못된 접근 이에요</div>
         <Link href={"/"} className={`${NavigationButton} ${NaviationPrimary}`} style={{ marginTop: "10px" }}>
           홈으로 가기
