@@ -13,4 +13,16 @@ export const Main = style({
   ...title.h2,
   gap: 48,
   fontFamily: fontFamily,
+
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      marginTop: "0px",
+      maxWidth: "100%",
+      width: "100%",
+      padding: "0px",
+      gap: "20px",
+      fontFamily: fontFamily,
+      ...title.h4,
+    },
+  },
 });

@@ -4,6 +4,7 @@ export const MainContainer = style({
   display: "flex",
   width: "100%",
   padding: "0px 140px",
+  paddingBottom: "120px",
   margin: "0 auto",
   marginTop: "68px",
   gap: 87,
@@ -12,11 +13,18 @@ export const MainContainer = style({
       flexDirection: "column-reverse",
       alignItems: "flex-start",
       justifyContent: "flex-start",
-      padding: "0px 30px",
+      padding: "0px 5px",
       gap: 20,
       margin: "0px",
     },
   },
+});
+
+export const FooterContainer = style({
+  width: "100%",
+  backgroundColor: "#EBEBEB",
+  marginTop: 20,
+  padding: "20px",
 });
 
 export const RankingWrapper = style({
@@ -44,6 +52,7 @@ export const RankingContainer = style({
   "@media": {
     "screen and (max-width: 1200px)": {
       maxWidth: "100%",
+      marginTop: "80px",
       width: "100%",
       padding: "0px",
       flexDirection: "column-reverse",

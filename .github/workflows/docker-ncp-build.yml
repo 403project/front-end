@@ -10,6 +10,10 @@ jobs:
   build_dockerpush:
     runs-on: ubuntu-latest
     steps:
+      # 깃 레포지토리에 접근이 가장 먼저임
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Create .env file
         run: |
           jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
@@ -27,9 +31,6 @@ jobs:
         with:
           name: env-file
           path: .
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -50,6 +51,10 @@ jobs:
           tags: ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name:latest
           cache-from: type=registry,ref=${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name:latest
           cache-to: type=inline
+
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: env-file
 
   pull_deploy:
     name: Connect server ssh and pull from container registry
