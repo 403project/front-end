@@ -67,6 +67,14 @@ export const ShowPasswordImg = style({
   cursor: "pointer",
 });
 
+export const duplicateImg = style({
+  position: "absolute",
+  top: "43.5%",
+  right: "30px",
+  transform: "translateY(-50%)",
+  cursor: "pointer",
+});
+
 export const LoginButton = style({
   width: "100%",
   height: "52px",
@@ -93,4 +101,8 @@ export const Error = style({
 
 export const Focused = style({
   borderColor: vars.primary[100],
+});
+
+export const Pass = style({
+  borderColor: system.success,
 });

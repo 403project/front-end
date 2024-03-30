@@ -13,16 +13,20 @@ import {
   EmailInputContainer,
   ImgContainer,
   NickNameContainer,
+  Pass,
+  duplicateImg,
 } from "@/styles/css-extracts/LoginInput.css";
 import CloseEye from "../../../../public/closeeye.svg";
 import Eye from "../../../../public/eye.svg";
 import Check from "../../../../public/check.svg";
 import Cancel from "../../../../public/cancel.svg";
+import GreenCheck from "../../../../public/green-check.svg";
 import Image from "next/image";
 import { getEmailInputClasses, checkRegistrationSuccess } from "../util";
 import { validateEmail } from "../validation";
 
 import { useState, useEffect, FocusEvent, KeyboardEvent } from "react";
+import { constant } from "@/app/utils/constant";
 
 interface JoinInputFormProps {
   oneSuccess: boolean;
@@ -63,6 +67,9 @@ export default function JoinInputForm({
   const [rePasswordFocused, setRePasswordFocused] = useState<boolean>(false);
   const [nickNameFocused, setNickNameFocused] = useState<boolean>(false);
 
+  const [emailDuplicate, setEmailDuplicate] = useState<number>(0);
+  const [nicknameDuplicate, setNicknameDuplicate] = useState<number>(0);
+
   useEffect(() => {
     checkRegistrationSuccess(
       email,
@@ -74,8 +81,36 @@ export default function JoinInputForm({
       rePasswordError,
       nicknameError,
       setOneSuccess,
+      emailDuplicate,
+      nicknameDuplicate,
     );
-  }, [email, password, rePassword, nickname, emailError, passwordError, rePasswordError, nicknameError, setOneSuccess]);
+  }, [
+    email,
+    password,
+    rePassword,
+    nickname,
+    emailError,
+    passwordError,
+    rePasswordError,
+    nicknameError,
+    setOneSuccess,
+    emailDuplicate,
+    nicknameDuplicate,
+  ]);
+
+  useEffect(() => {
+    if (emailDuplicate === 2) {
+      setOnEmailError(true);
+    } else {
+      setOnEmailError(false);
+    }
+
+    if (nicknameDuplicate === 2) {
+      setonNickError(true);
+    } else {
+      setonNickError(false);
+    }
+  }, [emailDuplicate, nicknameDuplicate]);
 
   const handleEmailChange = (e: FocusEvent<HTMLInputElement>) => {
     const newEmail = e.target.value.trim();
@@ -146,6 +181,53 @@ export default function JoinInputForm({
     }
   };
 
+  async function checkUniqueEmail() {
+    try {
+      const res = await fetch(constant.apiUrl + `users/unique-email?email=${email}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success === true) {
+          setEmailDuplicate(1);
+        } else if (data.success === false) {
+          setEmailDuplicate(2);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function checkUniqueNickname() {
+    try {
+      const res = await fetch(constant.apiUrl + `users/unique-nickname?nickname=${nickname}`, {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        console.log(data);
+        if (data.success === true) {
+          setNicknameDuplicate(1);
+        } else if (data.success === false) {
+          setNicknameDuplicate(2);
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div>
       <div>
@@ -157,9 +239,13 @@ export default function JoinInputForm({
             type="text"
             className={getEmailInputClasses(onEmailError, emailFocused, RegEmailNickInput, Error, Focused)}
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setEmailDuplicate(0);
+            }}
             onFocus={() => setEmailFocused(true)}
             onBlur={(e) => {
+              setEmailDuplicate(0);
               setEmailFocused(false);
               handleEmailChange(e);
             }}
@@ -177,7 +263,16 @@ export default function JoinInputForm({
               />
             </div>
           )}
-          <span className={Duplicate}>중복확인</span>
+          {emailDuplicate === 0 && (
+            <span className={Duplicate} onClick={checkUniqueEmail}>
+              중복확인
+            </span>
+          )}
+          {emailDuplicate === 1 ? (
+            <Image src={GreenCheck} width={24} height={24} className={duplicateImg} alt="중복 확인 이미지" />
+          ) : emailDuplicate === 2 ? (
+            <Image src={Check} width={24} height={24} className={duplicateImg} alt="중복 확인 이미지" />
+          ) : null}
         </div>
         {emailError && <div className={ErrorMessage}>{emailError}</div>}
       </div>
@@ -272,9 +367,13 @@ export default function JoinInputForm({
             type="text"
             className={getEmailInputClasses(onNickError, nickNameFocused, RegEmailNickInput, Error, Focused)}
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => {
+              setNicknameDuplicate(0);
+              setNickname(e.target.value);
+            }}
             onKeyDown={handleKeyDown}
             onBlur={(e) => {
+              setNicknameDuplicate(0);
               setNickNameFocused(false);
               handleBlurNick(e);
             }}
@@ -294,7 +393,16 @@ export default function JoinInputForm({
               />
             </div>
           )}
-          <span className={Duplicate}>중복확인</span>
+          {nicknameDuplicate === 0 && (
+            <span className={Duplicate} onClick={checkUniqueNickname}>
+              중복확인
+            </span>
+          )}
+          {nicknameDuplicate === 1 ? (
+            <Image src={GreenCheck} width={24} height={24} className={duplicateImg} alt="중복 확인 이미지" />
+          ) : nicknameDuplicate === 2 ? (
+            <Image src={Check} width={24} height={24} className={duplicateImg} alt="중복 확인 이미지" />
+          ) : null}
           {nicknameError && <div className={ErrorMessage}>{nicknameError}</div>}
         </div>
       </div>
