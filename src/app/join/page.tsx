@@ -8,8 +8,16 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import JoinNextPage from "./_component/JoinNextPage";
 import { validateFormData } from "./validation";
+import { constant } from "../utils/constant";
+import useGlobalStore from "../hooks/useGlobalStore";
+import { useModal } from "../hooks/useModal";
+import ModalContainer from "../_component/ModalContainer";
+import ModalPortal from "../_component/ModalPortal";
+import JoinModal from "./_component/JoinModal";
 
 export default function JoinPage() {
+  const { openModal, handleOpenModal, handleCloseModal } = useModal();
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const stepParam = searchParams.get("step");
@@ -24,6 +32,8 @@ export default function JoinPage() {
   const [birthYear, setBirthYear] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>("");
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
+
+  const { setIsLogin, isLogin } = useGlobalStore();
 
   let headerTitle = "회원가입";
   let pageContent = (
@@ -77,15 +87,46 @@ export default function JoinPage() {
     setTwoSuccess(validateFormData(birthYear, selectedCategory, selectedGender));
   }, [birthYear, selectedCategory, selectedGender]);
 
-  console.log(twoSuccess);
-
   const handleNext = () => {
     if (step < 2) {
       const nextStep = step + 1;
       setStep(nextStep);
       router.push(`/join/?step=${nextStep}`);
-    } else {
-      router.push("/");
+    } else if (step === 2) {
+      handleReg();
+    }
+  };
+
+  const handleReg = async () => {
+    try {
+      const res = await fetch(constant.apiUrl + "users/sign-up", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          nickname,
+          gender: selectedGender,
+          birthYear,
+          occupation: selectedCategory,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setIsLogin(true);
+          handleOpenModal();
+        }
+      } else {
+        const errorData = await res.json();
+        console.log(errorData);
+      }
+    } catch (error) {
+      console.error("error");
     }
   };
 
@@ -101,6 +142,13 @@ export default function JoinPage() {
         >
           {BtnContent}
         </button>
+      )}
+      {openModal && (
+        <ModalPortal>
+          <ModalContainer>
+            <JoinModal handleCloseModal={handleCloseModal} />
+          </ModalContainer>
+        </ModalPortal>
       )}
     </div>
   );

@@ -27,6 +27,8 @@ export function checkRegistrationSuccess(
   rePasswordError: string,
   nicknameError: string,
   setOnSuccess: (value: boolean) => void,
+  emailDuplicate: number,
+  nicknameDuplicate: number,
 ) {
   const isEmailValid = validateEmail(email); // 이메일 형식 확인
   const isPasswordValid = password.length >= 6 && password.length <= 15; // 비밀번호 길이 확인
@@ -36,14 +38,16 @@ export function checkRegistrationSuccess(
   const isAllFieldsFilled = email !== "" && password !== "" && rePassword !== "" && nickname !== "";
   const isAllErrorsEmpty = emailError === "" && passwordError === "" && rePasswordError === "" && nicknameError === "";
 
-  // 모든 조건이 충족되면 onSuccess 값을 true로 설정
+  // emailDuplicate와 nicknameDuplicate가 모두 1인 경우에만 onSuccess 값을 true로 설정
   if (
     isAllFieldsFilled &&
     isAllErrorsEmpty &&
     isEmailValid &&
     isPasswordValid &&
     isRePasswordValid &&
-    isNicknameValid
+    isNicknameValid &&
+    emailDuplicate === 1 &&
+    nicknameDuplicate === 1
   ) {
     setOnSuccess(true);
   } else {

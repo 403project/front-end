@@ -27,6 +27,7 @@ export default function RootLayout({
             </div>
           </Suspense>
         </RQProvider>
+        <div id="portal" />
       </body>
     </html>
   );
