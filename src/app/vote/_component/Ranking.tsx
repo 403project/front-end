@@ -30,8 +30,8 @@ const Ranking = () => {
         <div className={headerSubTitle}>실시간 투표 수</div>
         <div className={headerLine}></div>
         <div className={headerRankingBox}>
-          {Array.from({ length: 3 }).map((_) => {
-            return <Avatar />;
+          {Array.from({ length: 3 }).map((_, index) => {
+            return <Avatar key={index}/>;
           })}
         </div>
       </header>

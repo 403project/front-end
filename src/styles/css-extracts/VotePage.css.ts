@@ -5,8 +5,9 @@ export const voteContainer = style({
   padding: "0 140px",
   marginTop: 129,
   "@media": {
-    "screen and (max-width: 768px)": {
+    "screen and (max-width: 1200px)": {
       padding: "0 16px",
+      marginTop: 150,
     },
   },
 });
@@ -15,10 +16,26 @@ export const voteWrapper = style({
   display: "flex",
   justifyContent: "space-around",
   marginTop: 30,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      flexDirection: "column-reverse",
+      alignItems: "flex-start",
+      justifyContent: "flex-start",
+      gap: 20,
+    },
+  },
 });
 
 export const rankingBox = style({
   // flex: 1,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      maxWidth: "100%",
+      width: "100%",
+      padding: "0px",
+      flexDirection: "column-reverse",
+    },
+  },
 });
 
 export const voteSelect = style({
