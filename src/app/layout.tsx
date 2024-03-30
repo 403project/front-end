@@ -24,6 +24,7 @@ export default function RootLayout({
             <div className={themeClass}>{children}</div>
           </Suspense>
         </RQProvider>
+        <div id="portal" />
       </body>
     </html>
   );

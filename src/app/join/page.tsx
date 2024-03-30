@@ -9,8 +9,15 @@ import { useState, useEffect } from "react";
 import JoinNextPage from "./_component/JoinNextPage";
 import { validateFormData } from "./validation";
 import { constant } from "../utils/constant";
+import useGlobalStore from "../hooks/useGlobalStore";
+import { useModal } from "../hooks/useModal";
+import ModalContainer from "../_component/ModalContainer";
+import ModalPortal from "../_component/ModalPortal";
+import JoinModal from "./_component/JoinModal";
 
 export default function JoinPage() {
+  const { openModal, handleOpenModal, handleCloseModal } = useModal();
+
   const router = useRouter();
   const searchParams = useSearchParams();
   const stepParam = searchParams.get("step");
@@ -25,6 +32,8 @@ export default function JoinPage() {
   const [birthYear, setBirthYear] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>("");
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
+
+  const { setIsLogin, isLogin } = useGlobalStore();
 
   let headerTitle = "회원가입";
   let pageContent = (
@@ -105,8 +114,13 @@ export default function JoinPage() {
           occupation: selectedCategory,
         }),
       });
-      if (res.status === 200) {
-        console.log(res.json());
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setIsLogin(true);
+          handleOpenModal();
+        }
       } else {
         const errorData = await res.json();
         console.log(errorData);
@@ -128,6 +142,13 @@ export default function JoinPage() {
         >
           {BtnContent}
         </button>
+      )}
+      {openModal && (
+        <ModalPortal>
+          <ModalContainer>
+            <JoinModal handleCloseModal={handleCloseModal} />
+          </ModalContainer>
+        </ModalPortal>
       )}
     </div>
   );
