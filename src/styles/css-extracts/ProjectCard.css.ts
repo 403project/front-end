@@ -25,6 +25,7 @@ export const ProjectVoteButtonContainer = style({
 export const ProjectMoreButton = style({
   width: 224,
   height: 52,
+  display: "flex",
   justifyContent: "center",
   alignItems: "center",
   position: "relative",

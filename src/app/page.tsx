@@ -25,6 +25,7 @@ import { FooterContainer, MainContainer, RankingContainer, RankingWrapper } from
 
 import logowithtext from "../../public/logowithtext.svg";
 import RightArrow from "../../public/RightArrow.svg";
+import axios from "axios";
 
 type ProjectCardProps = {
   image?: string;
@@ -57,7 +58,23 @@ const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
   );
 };
 
-export default function Home() {
+type Poll = {
+  id: number;
+  title: string;
+  ongoing: boolean;
+  startDate: string;
+  endDate: string;
+};
+
+export default async function Home() {
+  const { data } = await axios.get<{ polls: Poll[] }>("https://api.byulbyul.store/polls");
+  const polls = data?.polls.map(({ ongoing, startDate, endDate, ...poll }) => ({
+    ongoing: ongoing ? "진행 중" : "진행완료",
+    startDate: startDate.slice(0, 10),
+    endDate: endDate.slice(0, 10),
+    ...poll,
+  }));
+
   return (
     <>
       <main className={MainContainer}>
@@ -65,13 +82,21 @@ export default function Home() {
         <div className={Main}>
           <h2>프로젝트 둘러보기</h2>
           <div className={ProjectsContainer}>
-            <ProjectCard status="진행 중" title="3월의 프로젝트" date="2024.03.01 - 2024.03.25" />
-            <ProjectCard status="진행완료" title="2월의 프로젝트" date="2024.02.01 - 2024.02.25" />
-            <ProjectCard status="진행완료" title="1월의 프로젝트" date="2024.01.01 - 2024.01.25" />
-            <button className={`${ProjectMoreButton}`}>
-              프로젝트 더보기
-              <Image src={RightArrow} className={ProjectMoreButtonRightArrow} alt="rightArrow" width={20} height={20} />
-            </button>
+            {polls.map(({ endDate, id, ongoing, startDate, title }) => (
+              <ProjectCard status={ongoing} title={title} date={`${startDate} ~ ${endDate}`} />
+            ))}
+            {polls.length > 3 && (
+              <Link href={"more"} className={`${ProjectMoreButton}`}>
+                프로젝트 더보기
+                <Image
+                  src={RightArrow}
+                  className={ProjectMoreButtonRightArrow}
+                  alt="rightArrow"
+                  width={20}
+                  height={20}
+                />
+              </Link>
+            )}
           </div>
         </div>
         <div className={RankingContainer}>

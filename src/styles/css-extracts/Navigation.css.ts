@@ -68,6 +68,7 @@ export const NavigationButton = style({
   padding: "14px 12px",
   border: "1px solid",
   color: vars.neutral["90"],
+  backgroundColor: "#fff",
   ...content.regular14,
   borderColor: vars.strokeLine["10"],
   borderRadius: 6,

@@ -28,9 +28,6 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </Link>
         <ul className={NavigationGroups}>
           <li>
-            <Link href={"about"}>About</Link>
-          </li>
-          <li>
             <Link href={"projects"}>월간 프로젝트</Link>
           </li>
           <li>
