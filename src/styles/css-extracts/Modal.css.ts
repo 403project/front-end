@@ -16,6 +16,7 @@ export const Container = style({
 });
 
 export const ModalBox = style({
+  margin: "0 20px",
   width: "384px",
   height: "480px",
   borderRadius: "8px",
