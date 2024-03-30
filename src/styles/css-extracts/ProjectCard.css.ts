@@ -25,9 +25,23 @@ export const ProjectVoteButtonContainer = style({
 export const ProjectMoreButton = style({
   width: 224,
   height: 52,
+  display: "flex",
   justifyContent: "center",
   alignItems: "center",
   position: "relative",
+  backgroundColor: vars.primary["100"],
+  color: vars.neutral["0"],
+  fontFamily: "Pretendard",
+  ...vars.content.medium14,
+  borderRadius: "6px",
+  padding: "10px 16px",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      width: "100%",
+      padding: "8px 12px",
+      ...vars.content.medium12,
+    },
+  },
 });
 export const ProjectMoreButtonRightArrow = style({
   position: "absolute",
@@ -43,6 +57,13 @@ export const ProjectVoteButton = style({
   ...vars.content.medium14,
   borderRadius: "6px",
   padding: "10px 16px",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      ...vars.content.medium12,
+      fontSize: 10,
+      padding: "8px 12px",
+    },
+  },
 });
 
 export const ProjectDate = style({
@@ -51,6 +72,12 @@ export const ProjectDate = style({
   ...vars.content.bold14,
   fontFamily: "Pretendard",
   fontWeight: "600",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      ...vars.content.medium12,
+      fontSize: 10,
+    },
+  },
 });
 
 export const ProjectPrimaryBadge = style({
@@ -70,6 +97,11 @@ export const ProjectBadge = style({
   ...vars.content.bold14,
   fontFamily: "Pretendard",
   fontWeight: "600",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      ...vars.content.medium12,
+    },
+  },
 });
 
 export const ProjectContentContainer = style({
@@ -84,6 +116,11 @@ export const ProjectTextTitle = style({
   color: vars.neutral[90],
   ...vars.title.h5,
   fontFamily: "Pretendard",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      ...vars.content.bold16,
+    },
+  },
 });
 
 export const ProjectContainer = style({
@@ -98,10 +135,32 @@ export const ProjectBorder = style({
   borderColor: vars.strokeLine[10],
 });
 
-export const ProjectImage = style({
+export const ProjectImageContainer = style({
   width: "118px",
   height: "118px",
   borderRadius: 10,
   padding: 8,
   background: vars.primary[10],
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      width: "80px",
+      height: "80px",
+    },
+  },
+});
+
+export const ProjectImage = style({
+  width: "100px",
+  height: "100px",
+  borderRadius: 10,
+  padding: 8,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      width: "70px",
+      height: "70px",
+    },
+  },
 });

@@ -7,6 +7,7 @@ import {
   NaviationPrimary,
   NavigationButton,
   NavigationGroups,
+  NavigationRightFirstButton,
   NavigationRightGroups,
 } from "@/styles/css-extracts/Navigation.css";
 import React, { PropsWithChildren } from "react";
@@ -14,6 +15,9 @@ import logo from "../../../public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import useGlobalStore from "../hooks/useGlobalStore";
+
+import bookmark from "../../../public/bookmark.svg";
+import login from "../../../public/login.svg";
 
 const Navigation = ({ children }: PropsWithChildren) => {
   const { isLogin } = useGlobalStore();
@@ -27,9 +31,6 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </Link>
         <ul className={NavigationGroups}>
           <li>
-            <Link href={"about"}>About</Link>
-          </li>
-          <li>
             <Link href={"projects"}>월간 프로젝트</Link>
           </li>
           <li>
@@ -38,7 +39,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </ul>
       </div>
       <ul className={NavigationRightGroups}>
-        <li>
+        <li className={NavigationRightFirstButton}>
           <Link href={"vote/create"}>등록하기</Link>
         </li>
         <li>
@@ -47,7 +48,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
               로그인
             </Link>
           ) : (
-            <Image src={"bookmark.svg"} width={32} height={32} alt="즐겨찾기" />
+            <Image src={bookmark} width={32} height={32} alt="즐겨찾기" />
           )}
         </li>
         <li>
@@ -56,7 +57,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
               회원가입
             </Link>
           ) : (
-            <Image src={"login.svg"} width={32} height={32} alt="유저" />
+            <Image src={login} width={32} height={32} alt="유저" />
           )}
         </li>
       </ul>

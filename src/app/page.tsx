@@ -16,11 +16,16 @@ import {
   ProjectsContainer,
   ProjectMoreButton,
   ProjectMoreButtonRightArrow,
+  ProjectImageContainer,
 } from "@/styles/css-extracts/ProjectCard.css";
 import Image from "next/image";
 import Link from "next/link";
 import Ranking from "./vote/_component/Ranking";
-import { MainContainer, RankingContainer, RankingWrapper } from "@/styles/css-extracts/Main.css";
+import { FooterContainer, MainContainer, RankingContainer, RankingWrapper } from "@/styles/css-extracts/Main.css";
+
+import logowithtext from "../../public/logowithtext.svg";
+import RightArrow from "../../public/RightArrow.svg";
+import axios from "axios";
 
 type ProjectCardProps = {
   image?: string;
@@ -33,8 +38,8 @@ const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
   return (
     <div className={`${ProjectBox} ${ProjectBorder}`}>
       <div className={ProjectContainer}>
-        <div className={ProjectImage}>
-          <Image src={image ?? "logowithtext.svg"} width={100} height={100} alt="projectImage" />
+        <div className={ProjectImageContainer}>
+          <Image src={image ?? logowithtext} className={ProjectImage} width={100} height={100} alt="projectImage" />
         </div>
         <div className={ProjectContentContainer}>
           <div className={`${ProjectBadge} ${status === "진행 중" ? ProjectPrimaryBadge : ProjectNormalBadge}`}>
@@ -53,33 +58,52 @@ const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
   );
 };
 
-export default function Home() {
+type Poll = {
+  id: number;
+  title: string;
+  ongoing: boolean;
+  startDate: string;
+  endDate: string;
+};
+
+export default async function Home() {
+  const { data } = await axios.get<{ polls: Poll[] }>("https://api.byulbyul.store/polls");
+  const polls = data?.polls.map(({ ongoing, startDate, endDate, ...poll }) => ({
+    ongoing: ongoing ? "진행 중" : "진행완료",
+    startDate: startDate.slice(0, 10),
+    endDate: endDate.slice(0, 10),
+    ...poll,
+  }));
+
   return (
-    <main className={MainContainer}>
-      <Navigation />
-      <div className={Main}>
-        <h2>프로젝트 둘러보기</h2>
-        <div className={ProjectsContainer}>
-          <ProjectCard status="진행 중" title="3월의 프로젝트" date="2024.03.01 - 2024.03.25" />
-          <ProjectCard status="진행완료" title="2월의 프로젝트" date="2024.02.01 - 2024.02.25" />
-          <ProjectCard status="진행완료" title="1월의 프로젝트" date="2024.01.01 - 2024.01.25" />
-          <button className={`${ProjectVoteButton} ${ProjectMoreButton}`}>
-            프로젝트 더보기
-            <Image
-              src={"RightArrow.svg"}
-              className={ProjectMoreButtonRightArrow}
-              alt="rightArrow"
-              width={20}
-              height={20}
-            />
-          </button>
+    <>
+      <main className={MainContainer}>
+        <Navigation />
+        <div className={Main}>
+          <h2>프로젝트 둘러보기</h2>
+          <div className={ProjectsContainer}>
+            {polls.map(({ endDate, id, ongoing, startDate, title }) => (
+              <ProjectCard status={ongoing} title={title} date={`${startDate} ~ ${endDate}`} />
+            ))}
+            {polls.length > 3 && (
+              <Link href={"more"} className={`${ProjectMoreButton}`}>
+                프로젝트 더보기
+                <Image
+                  src={RightArrow}
+                  className={ProjectMoreButtonRightArrow}
+                  alt="rightArrow"
+                  width={20}
+                  height={20}
+                />
+              </Link>
+            )}
+          </div>
         </div>
-      </div>
-      <div className={RankingContainer}>
-        <div className={RankingWrapper}>
-          <Ranking />
-        </div>
-        {/* <div
+        <div className={RankingContainer}>
+          <div className={RankingWrapper}>
+            <Ranking />
+          </div>
+          {/* <div
           style={{
             marginTop: "80px",
             maxWidth: "370px",
@@ -99,7 +123,11 @@ export default function Home() {
           </div>
           <div style={{ height: "1px", margin: "20px 0", width: "100%", backgroundColor: "#8BACFE" }} />
         </div> */}
-      </div>
-    </main>
+        </div>
+      </main>
+      <footer className={FooterContainer}>
+        <Image src={logowithtext} width={100} height={24} alt="logo" />
+      </footer>
+    </>
   );
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 import Navigation from "./_component/Navigation";
 import { NaviationPrimary, NavigationButton } from "@/styles/css-extracts/Navigation.css";
 import Image from "next/image";
+import starstar from "../../public/starstar.svg";
 
 const NotFound = () => {
   return (
@@ -20,7 +21,7 @@ const NotFound = () => {
           paddingBottom: "120px",
         }}
       >
-        <Image src="starstar.svg" width={320} height={320} alt="로고" />
+        <Image src={starstar} width={320} height={320} alt="로고" />
         <div style={{ fontWeight: "bold", fontSize: 24, fontFamily: "Pretendard" }}>잘못된 접근 이에요</div>
         <Link href={"/"} className={`${NavigationButton} ${NaviationPrimary}`} style={{ marginTop: "10px" }}>
           홈으로 가기
