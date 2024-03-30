@@ -57,7 +57,6 @@ export const NavigationRightGroups = style({
 });
 
 export const NavigationRightFirstButton = style({
-  background: "red",
   "@media": {
     "screen and (max-width: 800px)": {
       display: "none",

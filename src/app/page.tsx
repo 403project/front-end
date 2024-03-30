@@ -101,7 +101,7 @@ export default function Home() {
         </div>
       </main>
       <footer className={FooterContainer}>
-        <Image src={"/logowithtext.svg"} width={100} height={24} alt="logo" />
+        <Image src={logowithtext} width={100} height={24} alt="logo" />
       </footer>
     </>
   );
