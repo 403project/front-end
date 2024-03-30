@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import JoinNextPage from "./_component/JoinNextPage";
 import { validateFormData } from "./validation";
+import { constant } from "../utils/constant";
 
 export default function JoinPage() {
   const router = useRouter();
@@ -77,15 +78,41 @@ export default function JoinPage() {
     setTwoSuccess(validateFormData(birthYear, selectedCategory, selectedGender));
   }, [birthYear, selectedCategory, selectedGender]);
 
-  console.log(twoSuccess);
-
   const handleNext = () => {
     if (step < 2) {
       const nextStep = step + 1;
       setStep(nextStep);
       router.push(`/join/?step=${nextStep}`);
-    } else {
-      router.push("/");
+    } else if (step === 2) {
+      handleReg();
+    }
+  };
+
+  const handleReg = async () => {
+    try {
+      const res = await fetch(constant.apiUrl + "users/sign-up", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          nickname,
+          gender: selectedGender,
+          birthYear,
+          occupation: selectedCategory,
+        }),
+      });
+      if (res.status === 200) {
+        console.log(res.json());
+      } else {
+        const errorData = await res.json();
+        console.log(errorData);
+      }
+    } catch (error) {
+      console.error("error");
     }
   };
 
