@@ -39,6 +39,7 @@ const headerLine = style({
 });
 
 const headerRankingBox = style({
+  justifyContent: "center",
   display: "flex",
   gap: 30,
 });

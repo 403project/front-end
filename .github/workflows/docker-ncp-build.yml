@@ -10,6 +10,10 @@ jobs:
   build_dockerpush:
     runs-on: ubuntu-latest
     steps:
+      # 깃 레포지토리에 접근이 가장 먼저임
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Create .env file
         run: |
           jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
@@ -27,9 +31,6 @@ jobs:
         with:
           name: env-file
           path: .
-
-      - name: Checkout
-        uses: actions/checkout@v2
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -51,6 +52,10 @@ jobs:
           cache-from: type=registry,ref=${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name:latest
           cache-to: type=inline
 
+      - uses: geekyeggo/delete-artifact@v1
+        with:
+          name: env-file
+
   pull_deploy:
     name: Connect server ssh and pull from container registry
     needs: build_dockerpush
@@ -67,7 +72,7 @@ jobs:
             docker login -u ${{ secrets.NCP_ACCESS_KEY }} -p ${{ secrets.NCP_SECRET_KEY }} ${{ secrets.NCP_CONTAINER_REGISTRY }}
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name
             # 이미지 이름으로 실행 중인 컨테이너 ID를 찾기
-            CONTAINER_IDS=$(docker ps -q --filter ancestor=${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name)
+            CONTAINER_IDS=$(docker ps -q --filter label=app=nextjs)
 
             # 찾은 컨테이너 종료
             if [ ! -z "$CONTAINER_IDS" ]; then
@@ -80,9 +85,7 @@ jobs:
             fi
 
             # 이미지 실행
-            docker run -d -p 8080:8080 ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name
+            docker run -d -p 3000:3000 --label app=nextjs ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name
 
             # 사용하지 않는 이미지 정리
-            docker image prune -f
-            docker run -d -p 8080:8080 ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name
             docker image prune -f
