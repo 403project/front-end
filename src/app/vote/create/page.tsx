@@ -17,9 +17,14 @@ import {
 import { useDropzone } from "react-dropzone";
 import upload from "../../../../public/upload_image.svg";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function VoteCreate() {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [tags, setTags] = useState('');
+
   return (
     <>
       <Navigation />
@@ -38,17 +43,17 @@ export default function VoteCreate() {
 
           <div className={createBox}>
             <label className={inputLabel}>제목</label>
-            <input className={inputStyle} />
+            <input className={inputStyle} name="title" value={title}/>
           </div>
 
           <div className={createBox} style={{ alignItems: "flex-start" }}>
             <label className={inputLabel}>내용</label>
-            <textarea className={textareaStyle} />
+            <textarea className={textareaStyle} name="content" value={content}/>
           </div>
 
           <div className={createBox}>
             <label className={inputLabel}>태그</label>
-            <input className={inputStyle} />
+            <input className={inputStyle} name="tags" value={tags}/>
           </div>
 
           <div className={tagLimitLabel}>태그 갯수 제한 3개</div>

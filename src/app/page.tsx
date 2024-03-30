@@ -28,13 +28,14 @@ import RightArrow from "../../public/RightArrow.svg";
 import axios from "axios";
 
 type ProjectCardProps = {
+  id: number;
   image?: string;
   status: string;
   title: string;
   date: string;
 };
 
-const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
+const ProjectCard = ({ id, date, status, title, image }: ProjectCardProps) => {
   return (
     <div className={`${ProjectBox} ${ProjectBorder}`}>
       <div className={ProjectContainer}>
@@ -50,7 +51,7 @@ const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
         </div>
       </div>
       <div className={ProjectVoteButtonContainer}>
-        <Link href={"vote"} className={ProjectVoteButton}>
+        <Link href={`vote?pollid=${id}`} className={ProjectVoteButton}>
           {status === "진행 중" ? "투표하기" : "결과보기"}
         </Link>
       </div>
@@ -83,7 +84,7 @@ export default async function Home() {
           <h2>프로젝트 둘러보기</h2>
           <div className={ProjectsContainer}>
             {polls.map(({ endDate, id, ongoing, startDate, title }) => (
-              <ProjectCard status={ongoing} title={title} date={`${startDate} ~ ${endDate}`} />
+              <ProjectCard id={id} status={ongoing} title={title} date={`${startDate} ~ ${endDate}`} />
             ))}
             {polls.length > 3 && (
               <Link href={"more"} className={`${ProjectMoreButton}`}>
