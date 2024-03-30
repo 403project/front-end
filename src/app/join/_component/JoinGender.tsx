@@ -5,10 +5,13 @@ import {
   GenderBtn,
   selected,
 } from "@/styles/css-extracts/LoginReg.css";
-import { useState } from "react";
 
-export default function JoinGender() {
-  const [selectedGender, setSelectedGender] = useState<string | null>(null);
+interface IGenderProps {
+  selectedGender: string | null;
+  setSelectedGender: (gender: string) => void;
+}
+
+export default function JoinGender({ selectedGender, setSelectedGender }: IGenderProps) {
   const handleGenderClick = (gender: string) => {
     setSelectedGender(gender);
   };
