@@ -4,6 +4,12 @@ import { vars } from "../variants/variants.css";
 const voteCreateContainer = style({
   marginTop: 129,
   padding: "0 140px",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "0 30px",
+      marginTop: 155,
+    },
+  },
 });
 
 const voteCreateTitle = style({
@@ -16,6 +22,11 @@ const voteCreateWrapper = style({
   justifyContent: "center",
   alignItems: "center",
   padding: "0 295px",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "0",
+    },
+  },
 });
 
 const createBox = style({
@@ -57,6 +68,11 @@ const voteFileWrapper = style({
   alignItems: "center",
   padding: "72px 260px",
   maxWidth: 520,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "50px 150px",
+    },
+  },
 });
 
 const tagLimitLabel = style({
@@ -66,6 +82,11 @@ const tagLimitLabel = style({
   color: vars.neutral[50],
   marginTop: 9,
   marginBottom: 120,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      marginBottom: 150,
+    },
+  },
 });
 
 const saveWrapper = style({
@@ -76,6 +97,11 @@ const saveWrapper = style({
   display: "flex",
   backgroundColor: vars.primary[10],
   justifyContent: "flex-end",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "18px 30px",
+    },
+  },
 });
 
 const confirmButton = style({
