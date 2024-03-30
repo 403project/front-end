@@ -16,7 +16,9 @@ import { useState } from "react";
 import useGlobalStore from "@/app/hooks/useGlobalStore";
 import { useRouter } from "next/navigation";
 
-const LoginInpuForm = () => {
+import { constant } from "@/app/utils/constant";
+
+export default function LoginInpuForm() {
   const { setIsLogin } = useGlobalStore();
 
   const [isError, setIsError] = useState<boolean>(false);
@@ -25,13 +27,30 @@ const LoginInpuForm = () => {
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
 
-  const handleLogin = () => {
-    if (email === "test1234@gmail.com" && password === "1234") {
-      setIsLogin(true);
-      setIsError(false);
-      router.push("/");
-    } else {
-      setIsLogin(false);
+  const handleLogin = async () => {
+    try {
+      const res = await fetch(constant.apiUrl + "users/login", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        if (data.success) {
+          setIsLogin(true);
+          setIsError(false);
+          router.push("/");
+        } else {
+          setIsLogin(false);
+          setIsError(true);
+        }
+      }
+    } catch (error) {
+      console.error(error);
       setIsError(true);
     }
   };
@@ -83,6 +102,4 @@ const LoginInpuForm = () => {
       </button>
     </div>
   );
-};
-
-export default LoginInpuForm;
+}
