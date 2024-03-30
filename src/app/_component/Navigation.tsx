@@ -7,6 +7,7 @@ import {
   NaviationPrimary,
   NavigationButton,
   NavigationGroups,
+  NavigationRightFirstButton,
   NavigationRightGroups,
 } from "@/styles/css-extracts/Navigation.css";
 import React, { PropsWithChildren } from "react";
@@ -27,9 +28,6 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </Link>
         <ul className={NavigationGroups}>
           <li>
-            <Link href={"about"}>About</Link>
-          </li>
-          <li>
             <Link href={"projects"}>월간 프로젝트</Link>
           </li>
           <li>
@@ -38,7 +36,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </ul>
       </div>
       <ul className={NavigationRightGroups}>
-        <li>
+        <li className={NavigationRightFirstButton}>
           <Link href={"vote/create"}>등록하기</Link>
         </li>
         <li>
