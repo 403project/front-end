@@ -102,7 +102,3 @@ export const Error = style({
 export const Focused = style({
   borderColor: vars.primary[100],
 });
-
-export const Pass = style({
-  borderColor: system.success,
-});

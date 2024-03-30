@@ -13,7 +13,6 @@ import {
   EmailInputContainer,
   ImgContainer,
   NickNameContainer,
-  Pass,
   duplicateImg,
 } from "@/styles/css-extracts/LoginInput.css";
 import CloseEye from "../../../../public/closeeye.svg";
