@@ -68,6 +68,7 @@ jobs:
             docker pull ${{ secrets.NCP_CONTAINER_REGISTRY }}/tag-name
             # 이미지 이름으로 실행 중인 컨테이너 ID를 찾기
             CONTAINER_IDS=$(docker ps -q --filter label=app=nextjs)
+
             # 찾은 컨테이너 종료
             if [ ! -z "$CONTAINER_IDS" ]; then
                 docker stop $CONTAINER_IDS
