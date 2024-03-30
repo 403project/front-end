@@ -22,6 +22,9 @@ import Link from "next/link";
 import Ranking from "./vote/_component/Ranking";
 import { MainContainer, RankingContainer, RankingWrapper } from "@/styles/css-extracts/Main.css";
 
+import logowithtext from "../../public/logowithtext.svg";
+import RightArrow from "../../public/RightArrow.svg";
+
 type ProjectCardProps = {
   image?: string;
   status: string;
@@ -34,7 +37,7 @@ const ProjectCard = ({ date, status, title, image }: ProjectCardProps) => {
     <div className={`${ProjectBox} ${ProjectBorder}`}>
       <div className={ProjectContainer}>
         <div className={ProjectImage}>
-          <Image src={image ?? "logowithtext.svg"} width={100} height={100} alt="projectImage" />
+          <Image src={image ?? logowithtext} width={100} height={100} alt="projectImage" />
         </div>
         <div className={ProjectContentContainer}>
           <div className={`${ProjectBadge} ${status === "진행 중" ? ProjectPrimaryBadge : ProjectNormalBadge}`}>
@@ -65,13 +68,7 @@ export default function Home() {
           <ProjectCard status="진행완료" title="1월의 프로젝트" date="2024.01.01 - 2024.01.25" />
           <button className={`${ProjectVoteButton} ${ProjectMoreButton}`}>
             프로젝트 더보기
-            <Image
-              src={"RightArrow.svg"}
-              className={ProjectMoreButtonRightArrow}
-              alt="rightArrow"
-              width={20}
-              height={20}
-            />
+            <Image src={RightArrow} className={ProjectMoreButtonRightArrow} alt="rightArrow" width={20} height={20} />
           </button>
         </div>
       </div>
