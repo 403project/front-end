@@ -12,6 +12,21 @@ export const LoginRegInput = style({
   borderRadius: "6px",
 });
 
+export const EmailInputContainer = style({
+  position: "relative",
+});
+
+export const NickNameContainer = style({
+  position: "relative",
+});
+
+export const ImgContainer = style({
+  position: "absolute",
+  top: "45%",
+  right: "100px",
+  transform: "translateY(-50%)",
+});
+
 export const Duplicate = style({
   cursor: "pointer",
   marginLeft: "16.5px",
@@ -31,9 +46,6 @@ export const RegEmailNickInput = style({
   padding: "14px",
   fontFamily: "Pretendard",
   borderRadius: "6px",
-});
-export const Error = style({
-  borderColor: system.warning,
 });
 
 export const LoginRegLabel = style({
@@ -73,4 +85,12 @@ export const ErrorMessage = style({
   fontWeight: "400",
   lineHeight: "18px",
   color: system.warning,
+});
+
+export const Error = style({
+  borderColor: system.warning,
+});
+
+export const Focused = style({
+  borderColor: vars.primary[100],
 });

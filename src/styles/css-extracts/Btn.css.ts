@@ -10,4 +10,10 @@ export const LoginBtn = style({
   borderRadius: "8px",
   fontFamily: "Pretendard",
   color: vars.neutral[0],
+  cursor: "default",
+});
+
+export const SuccessBtn = style({
+  backgroundColor: vars.primary[100],
+  cursor: "pointer",
 });
