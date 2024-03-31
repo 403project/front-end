@@ -1,6 +1,6 @@
 import { ModalBox, ModalGreet, ModalSubTitle, ModalBtn } from "@/styles/css-extracts/Modal.css";
 import Image from "next/image";
-import Byul from "../../../../public/byul.svg";
+import Byul from "../../../../public/Byul.svg";
 import { useRouter } from "next/navigation";
 
 interface ICloseProps {
