@@ -7,6 +7,7 @@ import Navigation from "@/app/_component/Navigation";
 import logowithtext from "../../../../public/logowithtext.svg";
 import SimpleSlider from "@/app/_component/Carousel";
 import VoteButton from "../_component/VoteButton";
+import { ModalProvider } from "@jaewoong2/modal";
 
 type Project = {
   id: number;

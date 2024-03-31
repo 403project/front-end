@@ -108,6 +108,10 @@ export const ProjectVoteButtonContainer = style({
   alignItems: "flex-end",
 });
 
+export const ToastStyle = style({
+  position: "fixed",
+});
+
 export const ProjectVotePrimaryButton = style({
   width: "100%",
   height: 52,
