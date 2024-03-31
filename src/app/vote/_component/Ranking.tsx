@@ -1,3 +1,4 @@
+'use client'
 import {
   rankingContainer,
   rankingTopWrapper,
@@ -19,6 +20,7 @@ import Image from "next/image";
 import Avatar from "./Avatar";
 import RankingCard from "./RankingCard";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 type Ranks = {
   id: number;
@@ -29,8 +31,18 @@ type Ranks = {
 };
 
 const Ranking = async ({ params }: { params: { id?: string } }) => {
-  const { data } = await axios.get<{ projects: Ranks[] }>(`https://api.byulbyul.store/polls/${params?.id ?? 1}`);
-  const projects = data.projects.sort((a, b) => b.voteCount - a.voteCount);
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    axios.get<{ projects: Ranks[] }>(`https://api.byulbyul.store/polls/${params?.id ?? 1}`)
+    .then(res => {
+      setProjects(res.data.projects);
+    })
+    .catch(err => {
+      console.log('err', err);
+    })
+  }, [])
+  const sortProjects = projects.sort((a, b) => b.voteCount - a.voteCount);
   return (
     <section className={rankingContainer}>
       <header className={rankingTopWrapper}>
@@ -42,7 +54,7 @@ const Ranking = async ({ params }: { params: { id?: string } }) => {
         <div className={headerLine}></div>
       </header>
       <section className={rankingBottomWrapper}>
-        {projects?.slice(0, 5).map((rank, index) => {
+        {sortProjects?.slice(0, 5).map((rank, index) => {
           return <RankingCard index={index} {...rank} />;
         })}
       </section>
