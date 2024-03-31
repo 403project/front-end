@@ -20,6 +20,21 @@ export const MainContainer = style({
   },
 });
 
+export const ProjectDetailMain = style({
+  minHeight: "100%",
+  width: "100%",
+  display: "flex",
+  justifyContent: "center",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      justifyContent: "flex-start",
+      flexDirection: "column",
+      padding: "0px 10px",
+      gap: 20,
+    },
+  },
+});
+
 export const FooterContainer = style({
   width: "100%",
   backgroundColor: "#EBEBEB",

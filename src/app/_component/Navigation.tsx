@@ -37,20 +37,20 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </Link>
         <ul className={NavigationGroups}>
           <li>
-            <Link href={"projects"}>월간 프로젝트</Link>
+            <Link href={"/"}>월간 프로젝트</Link>
           </li>
           <li>
-            <Link href={"rank"}>랭킹</Link>
+            <Link href={"/"}>랭킹</Link>
           </li>
         </ul>
       </div>
       <ul className={NavigationRightGroups}>
         <li className={NavigationRightFirstButton}>
-          <Link href={"vote/create"}>등록하기</Link>
+          <Link href={"/vote/create"}>등록하기</Link>
         </li>
         <li>
           {!isLogin ? (
-            <Link className={NavigationButton} href={"login"}>
+            <Link className={NavigationButton} href={"/login"}>
               로그인
             </Link>
           ) : (
@@ -59,7 +59,7 @@ const Navigation = ({ children }: PropsWithChildren) => {
         </li>
         <li>
           {!isLogin ? (
-            <Link className={`${NavigationButton} ${NaviationPrimary}`} href={"join"}>
+            <Link className={`${NavigationButton} ${NaviationPrimary}`} href={"/join"}>
               회원가입
             </Link>
           ) : (

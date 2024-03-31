@@ -17,7 +17,7 @@ import {
   ProjectVoteButton,
 } from "@/styles/css-extracts/ProjectCard.css";
 import Link from "next/link";
-import logowithtext from "../../../../public/logowithtext.svg";
+import logowithtext from "../../../public/logowithtext.svg";
 import Image from "next/image";
 
 type ProjectCardProps = {
@@ -25,9 +25,10 @@ type ProjectCardProps = {
   status: string;
   title: string;
   date: string;
+  id: number;
 };
 
-const PollCard = ({ date, status, title, image }: ProjectCardProps) => {
+const PollCard = ({ date, status, title, id, image }: ProjectCardProps) => {
   return (
     <div className={`${ProjectBox} ${ProjectBorder}`}>
       <div className={ProjectContainer}>
@@ -43,7 +44,7 @@ const PollCard = ({ date, status, title, image }: ProjectCardProps) => {
         </div>
       </div>
       <div className={ProjectVoteButtonContainer}>
-        <Link href={"vote"} className={ProjectVoteButton}>
+        <Link href={`vote?pollid=${id}&title=${title}`} className={ProjectVoteButton}>
           {status === "진행 중" ? "투표하기" : "결과보기"}
         </Link>
       </div>

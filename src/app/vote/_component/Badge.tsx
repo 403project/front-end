@@ -1,7 +1,8 @@
 import { badgeContainer } from "@/styles/css-extracts/Badge.css";
+import { PropsWithChildren } from "react";
 
-const Badge = () => {
-  return <div className={badgeContainer}>테스트</div>;
+const Badge = ({ children }: PropsWithChildren) => {
+  return <div className={badgeContainer}>{children}</div>;
 };
 
 export default Badge;

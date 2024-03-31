@@ -1,39 +1,36 @@
-import { Main } from "@/styles/css-extracts/Header.css";
-import { ProjectsContainer } from "@/styles/css-extracts/ProjectCard.css";
+import { ProjectDescription, ProjectDescriptionContainer, ProjectTitle } from "@/styles/css-extracts/ProjectCard.css";
 import Image from "next/image";
-import { FooterContainer, MainContainer, RankingContainer, RankingWrapper } from "@/styles/css-extracts/Main.css";
+import { FooterContainer, ProjectDetailMain } from "@/styles/css-extracts/Main.css";
 import axios from "axios";
-import Ranking from "../_component/Ranking";
 import Navigation from "@/app/_component/Navigation";
 
 import logowithtext from "../../../../public/logowithtext.svg";
-import { PageProps } from "../../../../.next/types/app/vote/[id]/page";
+import SimpleSlider from "@/app/_component/Carousel";
+import VoteButton from "../_component/VoteButton";
 
 type Project = {
   id: number;
   title: string;
   description: string;
   voteCount: number;
+  imageUrls: string[];
+  tags: string[];
 };
 
-export default async function Home({ params }: PageProps) {
+export default async function ProjectPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const { data: project } = await axios.get<Project>(`https://api.byulbyul.store/projects/${id}`);
 
   return (
     <>
-      <main className={MainContainer}>
+      <main className={ProjectDetailMain}>
         <Navigation />
-        <div className={Main}>
-          <h2>{project.title}</h2>
-          <h2>{project.description}</h2>
-          <div className={ProjectsContainer}></div>
+        <div className={ProjectDescriptionContainer}>
+          <SimpleSlider images={project.imageUrls} />
+          <h2 className={ProjectTitle}>{project.title}</h2>
+          <p className={ProjectDescription}>{project.description}</p>
         </div>
-        <div className={RankingContainer}>
-          <div className={RankingWrapper}>
-            <Ranking />
-          </div>
-        </div>
+        <VoteButton {...project} projectId={project.id} />
       </main>
       <footer className={FooterContainer}>
         <Image src={logowithtext} width={100} height={24} alt="logo" />

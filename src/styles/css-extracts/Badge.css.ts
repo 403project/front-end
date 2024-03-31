@@ -7,4 +7,5 @@ export const badgeContainer = style({
   background: vars.primary[10],
   color: vars.primary[100],
   display: "flex",
+  marginTop: 10,
 });
