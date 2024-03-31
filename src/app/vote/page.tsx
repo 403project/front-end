@@ -121,7 +121,7 @@ export default function Vote() {
               )}
             </div>
             <div className={rankingBox}>
-              <Ranking />
+              <Ranking params={{ id: `1` }} />
             </div>
           </div>
         </div>

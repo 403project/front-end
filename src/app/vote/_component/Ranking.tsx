@@ -18,26 +18,32 @@ import logo from "../../../../public/logo.svg";
 import Image from "next/image";
 import Avatar from "./Avatar";
 import RankingCard from "./RankingCard";
+import axios from "axios";
 
-const Ranking = () => {
+type Ranks = {
+  id: number;
+  title: string;
+  description: string;
+  voteCount: number;
+  repImageUrl: string;
+};
+
+const Ranking = async ({ params }: { params: { id?: string } }) => {
+  const { data } = await axios.get<{ projects: Ranks[] }>(`https://api.byulbyul.store/polls/${params?.id ?? 1}`);
+  const projects = data.projects.sort((a, b) => b.voteCount - a.voteCount);
   return (
     <section className={rankingContainer}>
       <header className={rankingTopWrapper}>
         <div className={rankingHeaderBox}>
-          <div className={headerTitle}>3월 랭킹</div>
+          <div className={headerTitle}>랭킹</div>
           <Image width={23} height={23} src={logo} alt="별별투표 로고" />
         </div>
         <div className={headerSubTitle}>실시간 투표 수</div>
         <div className={headerLine}></div>
-        <div className={headerRankingBox}>
-          {Array.from({ length: 3 }).map((_, index) => {
-            return <Avatar key={index}/>;
-          })}
-        </div>
       </header>
       <section className={rankingBottomWrapper}>
-        {Array.from({ length: 5 }).map((_, index) => {
-          return <RankingCard key={index} />;
+        {projects?.slice(0, 5).map((rank, index) => {
+          return <RankingCard index={index} {...rank} />;
         })}
       </section>
     </section>
