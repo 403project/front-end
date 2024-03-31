@@ -4,6 +4,7 @@ export const MainContainer = style({
   display: "flex",
   width: "100%",
   padding: "0px 140px",
+  minHeight: "100%",
   paddingBottom: "120px",
   margin: "0 auto",
   marginTop: "68px",

@@ -5,8 +5,8 @@ import "./globals.css";
 import RQProvider from "./_component/RQProvider";
 import Navigation from "./_component/Navigation";
 import { themeClass } from "@/styles/variants/variants.css";
-import Loading from "./loading";
 import { siteConfig } from "../../config/site";
+import Loading from "./_component/Loading";
 
 export const metadata: Metadata = {
   title: {
@@ -42,7 +42,7 @@ export default function RootLayout({
     <html lang="ko" style={{ width: "100%", height: "100%" }}>
       <body style={{ width: "100%", height: "100%" }}>
         <RQProvider>
-          <Suspense fallback={<Loading />}>
+          <Suspense>
             <div className={themeClass} style={{ width: "100%", height: "100%" }}>
               {children}
             </div>

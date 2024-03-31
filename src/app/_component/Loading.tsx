@@ -1,6 +1,6 @@
-import Navigation from "./_component/Navigation";
+import Navigation from "./Navigation";
 import Image from "next/image";
-import loading from "../../public/loading.svg";
+import loading from "../../../public/loading.svg";
 
 const Loading = () => {
   return (
