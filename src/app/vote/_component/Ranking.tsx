@@ -31,7 +31,7 @@ type Ranks = {
 };
 
 const Ranking = async ({ params }: { params: { id?: string } }) => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Ranks[]>([]);
 
   useEffect(() => {
     axios.get<{ projects: Ranks[] }>(`https://api.byulbyul.store/polls/${params?.id ?? 1}`)
