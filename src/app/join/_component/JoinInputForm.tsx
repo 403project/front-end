@@ -215,7 +215,6 @@ export default function JoinInputForm({
 
       if (res.ok) {
         const data = await res.json();
-        console.log(data);
         if (data.success === true) {
           setNicknameDuplicate(1);
         } else if (data.success === false) {

@@ -13,27 +13,47 @@ import Ranking from "./_component/Ranking";
 import Navigation from "../_component/Navigation";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
-import loading from '../../../public/loading.svg';
+import loading from "../../../public/loading.svg";
 import Image from "next/image";
+import Link from "next/link";
+import { FooterContainer } from "@/styles/css-extracts/Main.css";
+import logowithtext from "../../../public/logowithtext.svg";
+
+export type Project = {
+  id: number;
+  title: string;
+  description: string;
+  voteCount: number;
+  imageUrls: string[];
+  tags?: string[];
+};
 
 export default function Vote() {
-  const [lists, setLists] = useState([]);
-  const searchParams = useSearchParams()
-  
+  const [lists, setLists] = useState<{ id: number }[]>([]);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const searchParams = useSearchParams();
+
   const [activeCardIndex, setActiveCardIndex] = useState(-1);
   const voteCardRefs = useRef<any>([]);
+  const title = searchParams.get("title");
 
   useEffect(() => {
-    axios.get(`https://api.byulbyul.store/polls/${searchParams.get('pollid')}`)
-    .then(res => {
-      const { projects } = res.data;
-      setLists(projects);
-    })
-    .catch(err => {
-      console.log('err', err);
-    })
-  }, [])
+    axios
+      .get(`https://api.byulbyul.store/polls/${searchParams.get("pollid")}`)
+      .then((res) => {
+        const { projects } = res.data;
+        setLists(projects);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
+  }, []);
 
+  useEffect(() => {
+    Promise.all(lists.map(({ id }) => axios.get(`https://api.byulbyul.store/projects/${id}`))).then((res) => {
+      setProjects(res.map(({ data }) => data));
+    });
+  }, [lists]);
 
   useEffect(() => {
     const handleClickOutside = (event: any) => {
@@ -46,12 +66,11 @@ export default function Vote() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [activeCardIndex]);
-
   return (
     <>
       <Navigation />
       <main className={voteContainer}>
-        <div className={voteTitle}>{`${searchParams.get('pollid')}월의 프로젝트`}</div>
+        <div className={voteTitle}>{`${title}`}</div>
         <div>
           {/* <select className={voteSelect}>
             <option defaultChecked>전체</option>
@@ -62,26 +81,27 @@ export default function Vote() {
           </select> */}
           <div className={voteWrapper}>
             <div>
-              {
-                lists.length > 0 ? 
-                  <div className={voteCardBox}>
-                    {lists.map((list, index) => {
-                      return (
+              {lists.length > 0 ? (
+                <div className={voteCardBox}>
+                  {projects.map((project, index) => {
+                    return (
+                      <Link key={project.id} href={`vote/${project.id}`}>
                         <VoteCard
                           key={index}
                           ref={(el: any) => (voteCardRefs.current[index] = el)}
                           isActive={index === activeCardIndex}
-                          onMoreClick={(e: any) => {
-                            e.stopPropagation();
-                            setActiveCardIndex(index === activeCardIndex ? -1 : index);
-                          }}
+                          // onMoreClick={(e: any) => {
+                          //   e.stopPropagation();
+                          //   setActiveCardIndex(index === activeCardIndex ? -1 : index);
+                          // }}
                           setActiveCardIndex={setActiveCardIndex}
-                          list={list}
+                          list={project}
                         />
-                      );
-                    })}
-                  </div>
-                :
+                      </Link>
+                    );
+                  })}
+                </div>
+              ) : (
                 <div
                   style={{
                     width: "100%",
@@ -94,9 +114,11 @@ export default function Vote() {
                   }}
                 >
                   <Image src={loading} width={320} height={320} alt="로고" />
-                  <div style={{ fontWeight: "bold", fontSize: 24, fontFamily: "Pretendard" }}>조금만 기다려주세요...</div>
+                  <div style={{ fontWeight: "bold", fontSize: 24, fontFamily: "Pretendard" }}>
+                    조금만 기다려주세요...
+                  </div>
                 </div>
-              }
+              )}
             </div>
             <div className={rankingBox}>
               <Ranking />
@@ -104,6 +126,9 @@ export default function Vote() {
           </div>
         </div>
       </main>
+      <footer className={FooterContainer}>
+        <Image src={logowithtext} width={100} height={24} alt="logo" />
+      </footer>
     </>
   );
 }

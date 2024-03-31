@@ -20,22 +20,33 @@ import like from "../../../../public/heart.svg";
 import activeLike from "../../../../public/active_heart.svg";
 import more from "../../../../public/more.svg";
 import { useState, forwardRef } from "react";
+import { Project } from "../page";
 
-const VoteCard = forwardRef(({ isActive, onMoreClick, setActiveCardIndex, list }: any, ref: any) => {
-  const { voteCount,title, id, description } = list;
+type Props = {
+  isActive?: boolean;
+  setActiveCardIndex: any;
+  list: Project;
+};
+
+const defaultImage = "https://images.prlc.kr/byulbyul.png";
+const 말줄임길이 = 80;
+
+const VoteCard = forwardRef(({ isActive, setActiveCardIndex, list }: Props, ref: any) => {
+  const { voteCount, title, id, description } = list;
   const [isMore, setIsMore] = useState(false);
+
   return (
     <div ref={ref} className={voteCardContainer}>
       <div className={voteCardHeader}>
         {/* <div className={voteBadge}>진행중</div> */}
-        <Image
+        <img
           className={voteImage}
-          src="https://png.pngtree.com/thumb_back/fh260/background/20230609/pngtree-three-puppies-with-their-mouths-open-are-posing-for-a-photo-image_2902292.jpg"
+          src={list.imageUrls?.[0] ?? defaultImage}
           alt="투표 이미지"
           width={300}
           height={180}
-          priority
         />
+
         {/* <div className={voteSetting}>
           <div className={voteSettingButton}>
             <Image src={activeLike} width={20} height={20} alt="좋아요" />
@@ -48,11 +59,13 @@ const VoteCard = forwardRef(({ isActive, onMoreClick, setActiveCardIndex, list }
       </div>
       <div className={voteCardContent}>
         <div className={voteCardTitle}>{title}</div>
-        <div className={voteCardDescription}>{description}</div>
+        <div className={voteCardDescription}>
+          {description.slice(0, 말줄임길이) + (description.length > 말줄임길이 ? " ..." : "")}
+        </div>
       </div>
       <div className={voteCardFooter}>
-        {Array.from({ length: 3 }).map((_) => {
-          return <Badge />;
+        {list?.tags?.map((tag) => {
+          return <Badge>{tag}</Badge>;
         })}
       </div>
       {isActive && (

@@ -1,10 +1,96 @@
 import { style } from "@vanilla-extract/css";
 import { vars } from "../variants/variants.css";
+import { fontFamily } from "../variants/token";
 
 export const ProjectsContainer = style({
   display: "flex",
   flexDirection: "column",
   gap: 32,
+});
+export const ProjectDescriptionContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: 22,
+  marginTop: 144,
+  width: "60%",
+  maxWidth: "460px",
+  marginRight: 48,
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "0px 30px",
+      width: "100%",
+      maxWidth: "100%",
+      marginTop: 80,
+      gap: 22,
+    },
+  },
+});
+
+export const ProjectVoteTag = style({
+  borderRadius: 40,
+  backgroundColor: vars.primary[10],
+  color: vars.primary[100],
+  padding: "12px 6px",
+  ...vars.content.medium12,
+});
+
+export const ProjectVoteDescription = style({
+  display: "block",
+  width: "280px",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  color: vars.neutral[50],
+  fontFamily: fontFamily,
+});
+
+export const ProjectVoteWrapper = style({
+  padding: 30,
+  display: "flex",
+  flexDirection: "column",
+  gap: 10,
+  color: vars.neutral[90],
+  fontFamily: fontFamily,
+  borderRadius: 10,
+  border: `1px solid ${vars.strokeLine[10]}`,
+  width: "100%",
+});
+
+export const ProjectVoteTagWrapper = style({
+  marginTop: "30px",
+});
+
+export const ProjectVoteContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  marginTop: 144,
+  gap: 22,
+  width: "60%",
+  maxWidth: "320px",
+  height: "fit-content",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      padding: "0px 30px",
+      width: "100%",
+      marginTop: 0,
+      maxWidth: "100%",
+      gap: 20,
+    },
+  },
+});
+
+export const ProjectTitle = style({
+  ...vars.content.medium20,
+  color: vars.neutral[90],
+  maxWidth: 450,
+  fontFamily: fontFamily,
+});
+
+export const ProjectDescription = style({
+  ...vars.content.regular16,
+  color: vars.neutral[50],
+  maxWidth: 450,
+  fontFamily: fontFamily,
 });
 
 export const ProjectBox = style({
@@ -20,6 +106,28 @@ export const ProjectVoteButtonContainer = style({
   height: "90px",
   display: "flex",
   alignItems: "flex-end",
+});
+
+export const ProjectVotePrimaryButton = style({
+  width: "100%",
+  height: 52,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  position: "relative",
+  backgroundColor: vars.primary["100"],
+  color: vars.neutral["0"],
+  fontFamily: "Pretendard",
+  ...vars.content.medium14,
+  borderRadius: "6px",
+  padding: "10px 16px",
+  "@media": {
+    "screen and (max-width: 1200px)": {
+      width: "100%",
+      padding: "8px 12px",
+      ...vars.content.medium12,
+    },
+  },
 });
 
 export const ProjectMoreButton = style({

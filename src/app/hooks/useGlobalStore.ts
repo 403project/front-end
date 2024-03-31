@@ -19,7 +19,7 @@ const useGlobalStore = create<GlobalState>(
     }),
     {
       name: "globalState",
-      getStorage: () => sessionStorage,
+      getStorage: () => localStorage,
     },
   ) as any,
 );

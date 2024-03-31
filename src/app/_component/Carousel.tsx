@@ -5,13 +5,17 @@ import Slider from "react-slick";
 import Image from "next/image";
 
 import Byul from "../../../public/Byul.svg";
-import { CarouselContainer, CarouselImageContainer } from "@/styles/css-extracts/Carousel.css";
+import { CarouselContainer, CarouselImageContainer, dotsClass } from "@/styles/css-extracts/Carousel.css";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function SimpleSlider() {
-  const Images = [Byul, Byul, Byul, Byul, Byul];
+type Props = {
+  images: string[];
+};
+
+function SimpleSlider({ images }: Props) {
+  const Images = images.length > 0 ? [...images, Byul] : [Byul, Byul];
 
   const settings = {
     dots: true,
@@ -24,9 +28,9 @@ function SimpleSlider() {
   return (
     <div className={CarouselContainer}>
       <Slider {...settings}>
-        {Images.map((image, index) => (
-          <div key={index} className={CarouselImageContainer}>
-            <Image src={image} layout="fill" alt="" objectFit="cover" />
+        {Images?.map((image) => (
+          <div key={image} className={CarouselImageContainer}>
+            <Image src={image} layout="fill" objectFit="cover" style={{ objectFit: "cover", width: "100%" }} alt="" />
           </div>
         ))}
       </Slider>

@@ -5,7 +5,8 @@ export const voteCardContainer = style({
   border: `1px solid ${vars.strokeLine[10]}`,
   borderRadius: 10,
   padding: 14,
-  maxWidth: 340,
+  width: 340,
+  height: 360,
   position: "relative",
 });
 
@@ -58,6 +59,8 @@ export const voteCardDescription = style({
   ...vars.content.medium16,
   color: vars.neutral[50],
   marginTop: 12,
+  height: 40,
+  maxHeight: 40,
 });
 
 export const voteCardFooter = style({

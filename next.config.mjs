@@ -14,7 +14,7 @@ const nextConfig = {
   output: "standalone",
   reactStrictMode: false,
   images: {
-    domains: ["png.pngtree.com"],
+    domains: ["png.pngtree.com", "images.prlc.kr", "cdn.digitaltoday.co.kr"],
   },
 };
 
