@@ -80,6 +80,7 @@ const leftTitle = style({
 
 const rankingCardTotalCount = style({
   color: vars.neutral[60],
+  marginLeft: 20,
   ...vars.content.regular14,
 });
 

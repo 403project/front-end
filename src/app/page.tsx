@@ -58,7 +58,7 @@ export default async function Home() {
         </div>
         <div className={RankingContainer}>
           <div className={RankingWrapper}>
-            <Ranking />
+            <Ranking params={{ id: `1` }} />
           </div>
         </div>
       </main>
