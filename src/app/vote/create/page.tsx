@@ -18,8 +18,13 @@ import { useDropzone } from "react-dropzone";
 import upload from "../../../../public/upload_image.svg";
 import Image from "next/image";
 import { useState } from "react";
+import { useModal } from "@/app/hooks/useModal";
+import ModalPortal from "@/app/_component/ModalPortal";
+import ModalContainer from "@/app/_component/ModalContainer";
+import DevelopModal from "../_component/DevelopModal";
 
 export default function VoteCreate() {
+    const { openModal, handleOpenModal, handleCloseModal } = useModal();
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -60,9 +65,16 @@ export default function VoteCreate() {
         </div>
       </main>
       <div className={saveWrapper}>
-        <button className={saveButton}>임시저장</button>
-        <button className={confirmButton}>완료하기</button>
+        <button className={saveButton} onClick={handleOpenModal}>임시저장</button>
+        <button className={confirmButton} onClick={handleOpenModal}>완료하기</button>
       </div>
+      {openModal && (
+        <ModalPortal>
+          <ModalContainer>
+            <DevelopModal handleCloseModal={handleCloseModal} />
+          </ModalContainer>
+        </ModalPortal>
+      )}
     </>
   );
 }

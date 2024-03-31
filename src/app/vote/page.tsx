@@ -66,6 +66,7 @@ export default function Vote() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [activeCardIndex]);
+  
   return (
     <>
       <Navigation />
@@ -80,7 +81,7 @@ export default function Vote() {
             <option>조회수 낮은 순</option>
           </select> */}
           <div className={voteWrapper}>
-            <div>
+            <div style={{ flex: 1 }}>
               {lists.length > 0 ? (
                 <div className={voteCardBox}>
                   {projects.map((project, index) => {
