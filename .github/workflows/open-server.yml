@@ -1,0 +1,20 @@
+name: Cron For Run Containers
+
+on:
+  schedule:
+    - cron: "35 22 * * *"
+
+jobs:
+  pull_deploy:
+    name: Connect server ssh and run containers
+    runs-on: ubuntu-latest
+    steps:
+      - name: connect ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOYMENT_HOST }}
+          username: ${{ secrets.DEPLOYMENT_USERNAME }}
+          password: ${{ secrets.DEPLOYMENT_PASSWORD }}
+          port: ${{ secrets.DEPLOYMENT_PORT }}
+          script: |
+            sh autoserver.sh

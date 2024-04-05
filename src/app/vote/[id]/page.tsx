@@ -7,7 +7,9 @@ import Navigation from "@/app/_component/Navigation";
 import logowithtext from "../../../../public/logowithtext.svg";
 import SimpleSlider from "@/app/_component/Carousel";
 import VoteButton from "../_component/VoteButton";
-import { ModalProvider } from "@jaewoong2/modal";
+import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import "github-markdown-css/github-markdown-light.css";
 
 type Project = {
   id: number;
@@ -29,7 +31,9 @@ export default async function ProjectPage({ params }: { params: { id: string } }
         <div className={ProjectDescriptionContainer}>
           <SimpleSlider images={project.imageUrls} />
           <h2 className={ProjectTitle}>{project.title}</h2>
-          <p className={ProjectDescription}>{project.description}</p>
+          <Markdown remarkPlugins={[remarkGfm]} className={"markdown-body"}>
+            {project.description}
+          </Markdown>
         </div>
         <VoteButton {...project} projectId={project.id} />
       </main>
