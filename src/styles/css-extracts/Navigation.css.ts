@@ -1,24 +1,81 @@
 import { style } from "@vanilla-extract/css";
 import { primary, title, fontFamily, content, strokeLine } from "../variants/token";
+import { vars } from "../variants/variants.css";
 
 export const LogoContainer = style({
   display: "flex",
-  gap: 48,
   alignItems: "center",
-  height: 42,
 });
 
 export const Naviation = style({
   display: "flex",
-  padding: "22px 26px",
+  padding: "16px 24px",
   alignItems: "center",
   borderBottom: "1px solid",
-  borderColor: strokeLine["10"],
+  borderColor: vars.strokeLine["10"],
+  position: "fixed",
+  backdropFilter: "blur(5px)",
+  top: 0,
+  left: 0,
+  width: "100%",
+  backgroundColor: "#ffffff59",
+  zIndex: 100,
+  justifyContent: "space-between",
 });
 
 export const LogoTitle = style({
-  color: primary[90],
-  fontSize: content["medium16"]["fontSize"],
-  fontWeight: content["medium16"]["fontWeight"],
+  color: vars.primary[90],
+  ...content.medium16,
   fontFamily: fontFamily,
+  marginLeft: 6,
+});
+
+export const NavigationGroups = style({
+  display: "flex",
+  gap: "20px",
+  marginLeft: 76,
+  color: vars.neutral["90"],
+  ...content.regular16,
+  fontFamily: "Pretendard",
+  "@media": {
+    "screen and (max-width: 800px)": {
+      display: "none",
+    },
+  },
+});
+
+export const NavigationRightGroups = style({
+  display: "flex",
+  gap: "20px",
+  color: vars.neutral["90"],
+  ...content.regular16,
+  alignItems: "center",
+  fontFamily: "Pretendard",
+  "@media": {
+    "screen and (max-width: 800px)": {},
+  },
+});
+
+export const NavigationRightFirstButton = style({
+  "@media": {
+    "screen and (max-width: 800px)": {
+      display: "none",
+    },
+  },
+});
+
+export const NavigationButton = style({
+  padding: "14px 12px",
+  border: "1px solid",
+  color: vars.neutral["90"],
+  backgroundColor: "#fff",
+  ...content.regular14,
+  borderColor: vars.strokeLine["10"],
+  borderRadius: 6,
+});
+
+export const NaviationPrimary = style({
+  backgroundColor: vars.primary["100"],
+  color: vars.neutral["0"],
+  border: "0px",
 });

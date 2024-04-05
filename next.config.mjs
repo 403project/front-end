@@ -12,6 +12,10 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig = {
   output: "standalone",
+  reactStrictMode: false,
+  images: {
+    domains: ["png.pngtree.com", "images.prlc.kr", "cdn.digitaltoday.co.kr"],
+  },
 };
 
 export default withVanillaExtract(nextConfig);
