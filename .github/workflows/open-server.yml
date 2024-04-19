@@ -2,7 +2,7 @@ name: Cron For Run Containers
 
 on:
   schedule:
-    - cron: "35 22 * * *"
+    - cron: "5 0 * * *"
 
 jobs:
   pull_deploy:
